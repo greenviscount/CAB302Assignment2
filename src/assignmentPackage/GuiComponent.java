@@ -1,5 +1,6 @@
 package assignmentPackage;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,10 +57,10 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
-        Load = createButton("Load");
-        Unload = createButton("Unload");
-        Find = createButton("Find");
-        Switch = createButton("Switch");
+        Load = createButton("images/draw_icon.png");
+        //Unload = createButton("U");
+        //Find = createButton("F");
+        //Switch = createButton("S");
         layoutButtonPanel();
 
         createDisplay();
@@ -92,8 +93,14 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     }
 
     //create new button with text str
-    private JButton createButton(String str) {
-        JButton button = new JButton(str);
+    private JButton createButton(String src) {
+        JButton button = new JButton();
+        try {
+            Image img = ImageIO.read(getClass().getResource(src)).getScaledInstance(25,25, Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         button.addActionListener(this);
         return button;
 
@@ -102,20 +109,20 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     //define layout of buttons in bottom panel
     private void layoutButtonPanel() {
         GridBagLayout layout = new GridBagLayout();
-        bottom.setLayout(layout);
+        left.setLayout(layout);
 
         //add components to grid
         GridBagConstraints constraints = new GridBagConstraints();
         //Defaults
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.weightx = 100;
-        constraints.weighty = 100;
+        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.weightx = 50;
+        constraints.weighty = 50;
 
-        addToPanel(bottom, Load, constraints,0,0,2,1);
-        addToPanel(bottom, Unload, constraints,3,0,2,1);
-        addToPanel(bottom, Find, constraints,0,2,2,1);
-        addToPanel(bottom, Switch, constraints,3,2,2,1);
+        addToPanel(left, Load, constraints,0,0,1,1);
+        //addToPanel(left, Unload, constraints,0,1,1,1);
+        //addToPanel(left, Find, constraints,0,2,1,1);
+        //addToPanel(left, Switch, constraints,0,3,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
