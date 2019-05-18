@@ -11,9 +11,13 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
-        if (src==Load) {
+        if (src==Line) {
             JButton btn = ((JButton) src);
-            display.setText(btn.getText().trim());
+            canvasPnl.changeMode(1);
+        }
+        else if (src==Square) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(2);
         }
     }
     //run gui
@@ -24,24 +28,19 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     }
 
     //initial size of frame
-    public static final int WIDTH = 300;
-    public static final int HEIGHT = 200;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 800;
 
     //each panel of the frame
-    private JPanel top;
-    private JPanel right;
-    private JPanel canvasPnl;
+    private CanvasComponent canvasPnl;
     private JPanel bottom;
     private JPanel left;
 
     //each different button
-    private JButton Load;
-    private JButton Unload;
+    private JButton Line;
+    private JButton Square;
     private JButton Find;
     private JButton Switch;
-
-    //initial display (replaced with canvas)
-    private JTextArea display;
 
     //create and add panels to frame
     private void createGUI() {
@@ -49,38 +48,21 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        top = createPanel(Color.GRAY);
-        right = createPanel(Color.GRAY);
-        canvasPnl = createPanel(Color.WHITE);
+        canvasPnl = new CanvasComponent();
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
-        Load = createButton("images/draw_icon.png");
-        //Unload = createButton("U");
+        Line = createButton("images/draw_icon.png");
+        Square = createButton("U");
         //Find = createButton("F");
         //Switch = createButton("S");
         layoutButtonPanel();
 
-        createDisplay();
-        canvasPnl.setLayout(new BorderLayout());
-        canvasPnl.add(display, BorderLayout.CENTER);
-
         getContentPane().add(canvasPnl,BorderLayout.CENTER);
-        getContentPane().add(right,BorderLayout.EAST);
         getContentPane().add(left,BorderLayout.WEST);
-        getContentPane().add(top,BorderLayout.NORTH);
         getContentPane().add(bottom,BorderLayout.SOUTH);
         repaint();
         setVisible(true);
-    }
-
-    //initialise display (replaced with canvas)
-    private void createDisplay() {
-        display = new JTextArea();
-        display.setEditable(false);
-        display.setLineWrap(true);
-        display.setFont(new Font("Arial", Font.BOLD, 24));
-        display.setBorder(BorderFactory.createEtchedBorder());
     }
 
     //create new panel with colour c
@@ -117,8 +99,8 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         constraints.weightx = 50;
         constraints.weighty = 50;
 
-        addToPanel(left, Load, constraints,0,0,1,1);
-        //addToPanel(left, Unload, constraints,0,1,1,1);
+        addToPanel(left, Line, constraints,0,0,1,1);
+        addToPanel(left, Square, constraints,0,1,1,1);
         //addToPanel(left, Find, constraints,0,2,1,1);
         //addToPanel(left, Switch, constraints,0,3,1,1);
     }
