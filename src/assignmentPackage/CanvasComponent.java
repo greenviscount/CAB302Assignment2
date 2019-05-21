@@ -40,36 +40,24 @@ public class CanvasComponent extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (clickStatus == true) {
-            startClick = new Point(e.getX(), e.getY());
-            endClick = startClick;
-            clickStatus = false;
-        }
-        else{
-            endClick = new Point(e.getX(), e.getY());
-            Shape l = makeRectangle(startDrag.x, startDrag.y, e.getX(), e.getY());
-            clickStatus = true;
-            repaint();
-        }
+
     }
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point(e.getX(), e.getY());
         points.add(startDrag);
-        endDrag = startDrag;
         repaint();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        if (drawMode == 1){
+        if (drawMode == 2){
             endDrag = new Point(e.getX(), e.getY());
             Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
             shapes.add(r);
             points.add(endDrag);
             startDrag = null;
             endDrag = null;
-            repaint();
         }
         else{
             endDrag = new Point(e.getX(), e.getY());
@@ -78,8 +66,8 @@ public class CanvasComponent extends JPanel implements MouseListener{
             points.add(endDrag);
             startDrag = null;
             endDrag = null;
-            repaint();
         }
+        repaint();
     }
 
     @Override
@@ -108,7 +96,8 @@ public class CanvasComponent extends JPanel implements MouseListener{
 
 
     }
-        public void paint(Graphics g) {
+        public void paintComponent(Graphics g) {
+        super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             paintBackground(g2);
@@ -123,7 +112,13 @@ public class CanvasComponent extends JPanel implements MouseListener{
 
             if (startDrag != null && endDrag != null) {
                 g2.setPaint(Color.LIGHT_GRAY);
-                Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+                Shape r;
+                if (drawMode == 2) {
+                    r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+                }
+                else {
+                    r = makeLine(startDrag.x,startDrag.y,endDrag.x,endDrag.y);
+                }
                 g2.draw(r);
             }
         }

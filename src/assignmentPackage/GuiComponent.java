@@ -2,34 +2,54 @@ package assignmentPackage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GuiComponent extends JFrame implements ActionListener, Runnable {
+public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
-        if (src==Line) {
+        if (src==Point) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(0);
+        }
+        else if (src==Line) {
             JButton btn = ((JButton) src);
             canvasPnl.changeMode(1);
         }
-        else if (src==Square) {
+        else if (src==Rectangle) {
             JButton btn = ((JButton) src);
             canvasPnl.changeMode(2);
         }
+        else if (src==Elipse) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(3);
+        }
+        else {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(4);
+        }
     }
-    //run gui
 
+    @Override
+    public void stateChanged(ChangeEvent e) {
+
+    }
+
+    //run gui
     @Override
     public void run() {
         createGUI();
     }
 
     //initial size of frame
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 800;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 500;
 
     //each panel of the frame
     private CanvasComponent canvasPnl;
@@ -37,10 +57,11 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     private JPanel left;
 
     //each different button
+    private JButton Point;
     private JButton Line;
-    private JButton Square;
-    private JButton Find;
-    private JButton Switch;
+    private JButton Rectangle;
+    private JButton Elipse;
+    private JButton Polygon;
 
     //create and add panels to frame
     private void createGUI() {
@@ -52,10 +73,12 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
-        Line = createButton("images/draw_icon.png");
-        Square = createButton("U");
-        //Find = createButton("F");
-        //Switch = createButton("S");
+        Point = createButton("images/draw_icon.png");
+        Line = createButton("images/line_icon.png");
+        Rectangle = createButton("images/rectangle_icon.png");
+        Elipse = createButton("images/elipse_icon.png");
+        Polygon = createButton("images/polygon_icon.png");
+
         layoutButtonPanel();
 
         getContentPane().add(canvasPnl,BorderLayout.CENTER);
@@ -96,13 +119,12 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         //Defaults
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.NORTH;
-        constraints.weightx = 50;
-        constraints.weighty = 50;
 
-        addToPanel(left, Line, constraints,0,0,1,1);
-        addToPanel(left, Square, constraints,0,1,1,1);
-        //addToPanel(left, Find, constraints,0,2,1,1);
-        //addToPanel(left, Switch, constraints,0,3,1,1);
+        addToPanel(left, Point, constraints,0,0,1,1);
+        addToPanel(left, Line, constraints,0,1,1,1);
+        addToPanel(left, Rectangle, constraints,0,2,1,1);
+        addToPanel(left, Elipse, constraints, 0,3,1,1);
+        addToPanel(left, Polygon, constraints,0,4,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
