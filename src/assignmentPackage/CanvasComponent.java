@@ -9,68 +9,87 @@ import java.awt.Point;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Shape;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
+import java.util.*;
+import javax.swing.*;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+public class CanvasComponent extends JPanel implements MouseListener{
+    private ArrayList<Shape> shapes;
+    private ArrayList<Point> points;
+    private Vector positionList;
 
-public class CanvasComponent extends JComponent implements MouseListener {
-    ArrayList<Shape> shapes = new ArrayList<>();
-    ArrayList<Point> points = new ArrayList<>();
-    Point startDrag, endDrag, startClick, endClick;
-    boolean clickStatus = true;
-    boolean drawMode = true;
+    private Point startDrag, endDrag, startClick, endClick;
+    private boolean clickStatus;
+    private int drawMode;
+    // create default vector
+    public CanvasComponent() {
+
+        super();
+        shapes = new ArrayList<>();
+        points = new ArrayList<>();
+        positionList = new Vector();
+        clickStatus = true;
+        drawMode = 1;
+        this.addMouseListener(this);
+        this.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                endDrag = new Point(e.getX(), e.getY());
+                repaint();
+            }
+        });
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (clickStatus == true) {
-            startClick = new Point(e.getX(), e.getY());
-            endClick = startClick;
-            clickStatus = false;
-        }
-        else{
-            endClick = new Point(e.getX(), e.getY());
-            Shape l = makeRectangle(startDrag.x, startDrag.y, e.getX(), e.getY());
-            clickStatus = true;
-            repaint();
-        }
+        startDrag = new Point(e.getX(), e.getY());
+        positionList.add("PLOT: ");
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
+        positionList.removeAllElements();
+
     }
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point(e.getX(), e.getY());
+        if(drawMode == 2) {
+            positionList.add("RECTANGLE: ");
+        }
+        else{
+            positionList.add("LINE: ");
+        }
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
         points.add(startDrag);
-        endDrag = startDrag;
         repaint();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        if (drawMode == true){
+        if (drawMode == 2){
             endDrag = new Point(e.getX(), e.getY());
             Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
             shapes.add(r);
             points.add(endDrag);
+            positionList.add(endDrag.x);
+            positionList.add(endDrag.y);
             startDrag = null;
             endDrag = null;
-            repaint();
-            drawMode = false;
         }
         else{
             endDrag = new Point(e.getX(), e.getY());
             Shape r = makeLine(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
             shapes.add(r);
             points.add(endDrag);
+            positionList.add(endDrag.x);
+            positionList.add(endDrag.y);
             startDrag = null;
             endDrag = null;
-            repaint();
-            drawMode = true;
         }
+        System.out.println(positionList.toString());
+        positionList.removeAllElements();
+        repaint();
     }
 
     @Override
@@ -81,17 +100,11 @@ public class CanvasComponent extends JComponent implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    public void changeMode(int num) {
+        drawMode = num;
+    }
 
-    public void PaintSurface() {
-            this.addMouseListener(this);
-            this.addMouseMotionListener(new MouseMotionAdapter() {
-                public void mouseDragged(MouseEvent e) {
-                    endDrag = new Point(e.getX(), e.getY());
-                    repaint();
-                }
-            });
-        }
-        private void paintBackground(Graphics2D g2){
+    private void paintBackground(Graphics2D g2){
             g2.setPaint(Color.LIGHT_GRAY);
             for (int i = 0; i < getSize().width; i += 10) {
                 Shape line = new Line2D.Float(i, 0, i, getSize().height);
@@ -104,8 +117,9 @@ public class CanvasComponent extends JComponent implements MouseListener {
             }
 
 
-        }
-        public void paint(Graphics g) {
+    }
+        public void paintComponent(Graphics g) {
+        super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             paintBackground(g2);
@@ -120,7 +134,13 @@ public class CanvasComponent extends JComponent implements MouseListener {
 
             if (startDrag != null && endDrag != null) {
                 g2.setPaint(Color.LIGHT_GRAY);
-                Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+                Shape r;
+                if (drawMode == 2) {
+                    r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+                }
+                else {
+                    r = makeLine(startDrag.x,startDrag.y,endDrag.x,endDrag.y);
+                }
                 g2.draw(r);
             }
         }
