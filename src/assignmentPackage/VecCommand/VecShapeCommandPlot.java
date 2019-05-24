@@ -3,16 +3,15 @@ package assignmentPackage.VecCommand;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandPlot extends VecShapeCommand{
+public class VecShapeCommandPlot extends VecShapeCommand implements IVecCommandExecutable {
 
-    public VecShapeCommandPlot(ArrayList<Point2D
-            > p){
-        super(p);
+    public VecShapeCommandPlot(ArrayList<Point2D.Double> p){
+        this.points = p;
         this.type = VecCommandType.PLOT;
     }
 
     @Override
-    public void draw() {
+    public void Execute() {
         //TODO: implement drawing method
     }
 }
