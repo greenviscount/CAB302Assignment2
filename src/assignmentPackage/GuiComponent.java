@@ -8,11 +8,19 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
 
 public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
+    //Create a file chooser
+    final JFileChooser fc = new JFileChooser();
+
+    private ArrayList<String> fileArrayList;
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
+            //throws Exception
         Object src = e.getSource();
         if (src==Point) {
             JButton btn = ((JButton) src);
@@ -29,6 +37,27 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         else if (src==Elipse) {
             JButton btn = ((JButton) src);
             canvasPnl.changeMode(3);
+        }
+        else if (src==newFile){
+            //In response to a button click:
+            fileRead = true;
+            FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setVisible(true);
+            String file = dialog.getFile();
+            System.out.println(file);
+            try {
+                // pass the path to the file as a parameter
+                FileReader fr = new FileReader(file);
+                int i;
+                while ((i = fr.read()) != -1) {
+
+                    //System.out.print((char) i);
+                }
+            }
+            catch(Exception e2){
+
+            }
         }
         else {
             JButton btn = ((JButton) src);
@@ -62,7 +91,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton Rectangle;
     private JButton Elipse;
     private JButton Polygon;
-
+    private JButton newFile;
+    private static boolean fileRead;
     //create and add panels to frame
     private void createGUI() {
         setSize(WIDTH, HEIGHT);
@@ -78,6 +108,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Rectangle = createButton("images/rectangle_icon.png");
         Elipse = createButton("images/elipse_icon.png");
         Polygon = createButton("images/polygon_icon.png");
+        newFile = createButton("Select a file.");
 
         layoutButtonPanel();
 
@@ -125,6 +156,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(left, Rectangle, constraints,0,2,1,1);
         addToPanel(left, Elipse, constraints, 0,3,1,1);
         addToPanel(left, Polygon, constraints,0,4,1,1);
+        addToPanel(left, newFile, constraints,0,5,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
@@ -138,7 +170,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     }
 
     //main class
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         SwingUtilities.invokeLater(new GuiComponent());
     }
