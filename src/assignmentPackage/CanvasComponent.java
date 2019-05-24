@@ -18,15 +18,22 @@ import javax.swing.*;
 
 public class CanvasComponent extends JPanel implements MouseListener{
     private ArrayList<Shape> shapes;
+    private ArrayList<Color> colours;
     private ArrayList<Point> points;
+    private Vector positionList;
+
     private Point startDrag, endDrag, startClick, endClick;
     private boolean clickStatus;
     private int drawMode;
-
-    public CanvasComponent() {
+    private JButton button;
+  
+    public CanvasComponent(JButton button) {
         super();
+        this.button = button;
         shapes = new ArrayList<>();
+        colours = new ArrayList<>();
         points = new ArrayList<>();
+        positionList = new Vector();
         clickStatus = true;
         drawMode = 1;
         this.addMouseListener(this);
@@ -45,28 +52,38 @@ public class CanvasComponent extends JPanel implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point(e.getX(), e.getY());
+        if(drawMode == 2) {
+            positionList.add("RECTANGLE: ");
+        }
+        else{
+            positionList.add("LINE: ");
+        }
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
         points.add(startDrag);
         repaint();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        Shape r;
         if (drawMode == 2){
             endDrag = new Point(e.getX(), e.getY());
-            Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
-            shapes.add(r);
-            points.add(endDrag);
-            startDrag = null;
-            endDrag = null;
+            r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
         }
         else{
             endDrag = new Point(e.getX(), e.getY());
-            Shape r = makeLine(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
-            shapes.add(r);
-            points.add(endDrag);
-            startDrag = null;
-            endDrag = null;
+            r = makeLine(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+
         }
+        shapes.add(r);
+        points.add(endDrag);
+        positionList.add(endDrag.x);
+        positionList.add(endDrag.y);
+        startDrag = null;
+        endDrag = null;
+        colours.add(button.getBackground());
+        System.out.println(positionList.toString());
+        positionList.removeAllElements();
         repaint();
     }
 
@@ -94,7 +111,6 @@ public class CanvasComponent extends JPanel implements MouseListener{
                 g2.draw(line);
             }
 
-
     }
         public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -105,9 +121,9 @@ public class CanvasComponent extends JPanel implements MouseListener{
             g2.setStroke(new BasicStroke(2));
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
-            for (Shape s : shapes) {
-                g2.setPaint(Color.BLACK);
-                g2.draw(s);
+            for (int i=0;i<shapes.size();i++) {
+                g2.setPaint(colours.get(i));
+                g2.draw(shapes.get(i));
             }
 
             if (startDrag != null && endDrag != null) {
