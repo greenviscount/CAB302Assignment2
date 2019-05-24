@@ -14,7 +14,6 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 import javax.swing.*;
-import java.io.*;
 
 public class CanvasComponent extends JPanel implements MouseListener{
     private ArrayList<Shape> shapes;
@@ -44,9 +43,10 @@ public class CanvasComponent extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        startClick = new Point(e.getX(), e.getY());
-        positionList.add(startClick.x);
-        positionList.add(startClick.y);
+        startDrag = new Point(e.getX(), e.getY());
+        positionList.add("PLOT: ");
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
         positionList.removeAllElements();
 
     }
@@ -55,9 +55,6 @@ public class CanvasComponent extends JPanel implements MouseListener{
         startDrag = new Point(e.getX(), e.getY());
         if(drawMode == 2) {
             positionList.add("RECTANGLE: ");
-        }
-        if(drawMode == 0) {
-            positionList.add("PLOT: ");
         }
         else{
             positionList.add("LINE: ");
