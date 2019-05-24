@@ -21,7 +21,7 @@ public class testGUI extends JFrame implements Runnable{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        canvas = new CanvasComponent();
+        canvas = new CanvasComponent(new JButton());
         getContentPane().add(canvas, BorderLayout.CENTER);
         repaint();
         setVisible(true);

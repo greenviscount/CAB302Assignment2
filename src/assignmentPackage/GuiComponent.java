@@ -23,22 +23,21 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             //throws Exception
         Object src = e.getSource();
         if (src==Point) {
-            JButton btn = ((JButton) src);
             canvasPnl.changeMode(0);
         }
         else if (src==Line) {
-            JButton btn = ((JButton) src);
             canvasPnl.changeMode(1);
         }
         else if (src==Rectangle) {
-            JButton btn = ((JButton) src);
             canvasPnl.changeMode(2);
         }
         else if (src==Elipse) {
-            JButton btn = ((JButton) src);
             canvasPnl.changeMode(3);
         }
-        else if (src==newFile){
+        else if (src==Polygon){
+            canvasPnl.changeMode(4);
+        }
+        else if (src==imp) {
             //In response to a button click:
             fileRead = true;
             FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
@@ -59,9 +58,13 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
             }
         }
-        else {
-            JButton btn = ((JButton) src);
-            canvasPnl.changeMode(4);
+        else if (src==export) {
+            //export file
+        }
+        else if (src==colour) {
+            ColourChooser frejm = new ColourChooser(colour);
+            frejm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frejm.setVisible(true);
         }
     }
 
@@ -91,15 +94,18 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton Rectangle;
     private JButton Elipse;
     private JButton Polygon;
-    private JButton newFile;
+    private JButton imp;
+    private JButton export;
+    private JButton colour;
+
     private static boolean fileRead;
+  
     //create and add panels to frame
     private void createGUI() {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        canvasPnl = new CanvasComponent();
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
@@ -108,9 +114,14 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Rectangle = createButton("images/rectangle_icon.png");
         Elipse = createButton("images/elipse_icon.png");
         Polygon = createButton("images/polygon_icon.png");
-        newFile = createButton("Select a file.");
+        imp = createButton("images/import.png");
+        export = createButton("images/export.png");
+        colour = createButton("");
+        colour.setBackground(Color.BLACK);
 
+        canvasPnl = new CanvasComponent(colour);
         layoutButtonPanel();
+
 
         getContentPane().add(canvasPnl,BorderLayout.CENTER);
         getContentPane().add(left,BorderLayout.WEST);
@@ -135,6 +146,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         } catch (Exception ex) {
             System.out.println(ex);
         }
+        button.setPreferredSize(new Dimension(40,40));
         button.addActionListener(this);
         return button;
 
@@ -144,7 +156,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private void layoutButtonPanel() {
         GridBagLayout layout = new GridBagLayout();
         left.setLayout(layout);
-
+        bottom.setLayout(layout);
         //add components to grid
         GridBagConstraints constraints = new GridBagConstraints();
         //Defaults
@@ -156,7 +168,9 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(left, Rectangle, constraints,0,2,1,1);
         addToPanel(left, Elipse, constraints, 0,3,1,1);
         addToPanel(left, Polygon, constraints,0,4,1,1);
-        addToPanel(left, newFile, constraints,0,5,1,1);
+        addToPanel(left,colour,constraints,0,5,1,2);
+        addToPanel(bottom,imp,constraints,0,0,1,1);
+        addToPanel(bottom,export,constraints,1,0,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
