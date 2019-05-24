@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.*;
 
 public class testGUI extends JFrame implements Runnable{
 
@@ -26,8 +27,8 @@ public class testGUI extends JFrame implements Runnable{
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception{
         SwingUtilities.invokeLater(new testGUI());
     }
 }
+

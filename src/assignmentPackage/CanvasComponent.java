@@ -20,16 +20,20 @@ public class CanvasComponent extends JPanel implements MouseListener{
     private ArrayList<Shape> shapes;
     private ArrayList<Color> colours;
     private ArrayList<Point> points;
+    private Vector positionList;
+
     private Point startDrag, endDrag, startClick, endClick;
     private boolean clickStatus;
     private int drawMode;
     private JButton button;
+  
     public CanvasComponent(JButton button) {
         super();
         this.button = button;
         shapes = new ArrayList<>();
         colours = new ArrayList<>();
         points = new ArrayList<>();
+        positionList = new Vector();
         clickStatus = true;
         drawMode = 1;
         this.addMouseListener(this);
@@ -48,6 +52,14 @@ public class CanvasComponent extends JPanel implements MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point(e.getX(), e.getY());
+        if(drawMode == 2) {
+            positionList.add("RECTANGLE: ");
+        }
+        else{
+            positionList.add("LINE: ");
+        }
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
         points.add(startDrag);
         repaint();
     }
@@ -57,7 +69,6 @@ public class CanvasComponent extends JPanel implements MouseListener{
         if (drawMode == 2){
             endDrag = new Point(e.getX(), e.getY());
             r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
-
         }
         else{
             endDrag = new Point(e.getX(), e.getY());
@@ -66,9 +77,13 @@ public class CanvasComponent extends JPanel implements MouseListener{
         }
         shapes.add(r);
         points.add(endDrag);
+        positionList.add(endDrag.x);
+        positionList.add(endDrag.y);
         startDrag = null;
         endDrag = null;
         colours.add(button.getBackground());
+        System.out.println(positionList.toString());
+        positionList.removeAllElements();
         repaint();
     }
 

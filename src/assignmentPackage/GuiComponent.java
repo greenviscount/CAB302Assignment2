@@ -8,11 +8,19 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
 
 public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
+    //Create a file chooser
+    final JFileChooser fc = new JFileChooser();
+
+    private ArrayList<String> fileArrayList;
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
+            //throws Exception
         Object src = e.getSource();
         if (src==Point) {
             canvasPnl.changeMode(0);
@@ -30,7 +38,25 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             canvasPnl.changeMode(4);
         }
         else if (src==imp) {
-            //import file
+            //In response to a button click:
+            fileRead = true;
+            FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setVisible(true);
+            String file = dialog.getFile();
+            System.out.println(file);
+            try {
+                // pass the path to the file as a parameter
+                FileReader fr = new FileReader(file);
+                int i;
+                while ((i = fr.read()) != -1) {
+
+                    //System.out.print((char) i);
+                }
+            }
+            catch(Exception e2){
+
+            }
         }
         else if (src==export) {
             //export file
@@ -72,6 +98,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton export;
     private JButton colour;
 
+    private static boolean fileRead;
+  
     //create and add panels to frame
     private void createGUI() {
         setSize(WIDTH, HEIGHT);
@@ -143,7 +171,6 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(left,colour,constraints,0,5,1,2);
         addToPanel(bottom,imp,constraints,0,0,1,1);
         addToPanel(bottom,export,constraints,1,0,1,1);
-
     }
 
     //add component c to panel jp in position x, y with size w by h
@@ -157,7 +184,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     }
 
     //main class
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         SwingUtilities.invokeLater(new GuiComponent());
     }
