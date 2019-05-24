@@ -2,85 +2,121 @@ package assignmentPackage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
 
-public class GuiComponent extends JFrame implements ActionListener, Runnable {
+public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
+    //Create a file chooser
+    final JFileChooser fc = new JFileChooser();
+
+    private ArrayList<String> fileArrayList;
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
+            //throws Exception
         Object src = e.getSource();
-        if (src==Load) {
+        if (src==Point) {
             JButton btn = ((JButton) src);
-            display.setText(btn.getText().trim());
+            canvasPnl.changeMode(0);
+        }
+        else if (src==Line) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(1);
+        }
+        else if (src==Rectangle) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(2);
+        }
+        else if (src==Elipse) {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(3);
+        }
+        else if (src==newFile){
+            //In response to a button click:
+            fileRead = true;
+            FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
+            dialog.setMode(FileDialog.LOAD);
+            dialog.setVisible(true);
+            String file = dialog.getFile();
+            System.out.println(file);
+            try {
+                // pass the path to the file as a parameter
+                FileReader fr = new FileReader(file);
+                int i;
+                while ((i = fr.read()) != -1) {
+
+                    //System.out.print((char) i);
+                }
+            }
+            catch(Exception e2){
+
+            }
+        }
+        else {
+            JButton btn = ((JButton) src);
+            canvasPnl.changeMode(4);
         }
     }
-    //run gui
 
+    @Override
+    public void stateChanged(ChangeEvent e) {
+
+    }
+
+    //run gui
     @Override
     public void run() {
         createGUI();
     }
 
     //initial size of frame
-    public static final int WIDTH = 300;
-    public static final int HEIGHT = 200;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 500;
 
     //each panel of the frame
-    private JPanel top;
-    private JPanel right;
-    private JPanel canvasPnl;
+    private CanvasComponent canvasPnl;
     private JPanel bottom;
     private JPanel left;
 
     //each different button
-    private JButton Load;
-    private JButton Unload;
-    private JButton Find;
-    private JButton Switch;
-
-    //initial display (replaced with canvas)
-    private JTextArea display;
-
+    private JButton Point;
+    private JButton Line;
+    private JButton Rectangle;
+    private JButton Elipse;
+    private JButton Polygon;
+    private JButton newFile;
+    private static boolean fileRead;
     //create and add panels to frame
     private void createGUI() {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        top = createPanel(Color.GRAY);
-        right = createPanel(Color.GRAY);
-        canvasPnl = createPanel(Color.WHITE);
+        canvasPnl = new CanvasComponent();
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
-        Load = createButton("images/draw_icon.png");
-        //Unload = createButton("U");
-        //Find = createButton("F");
-        //Switch = createButton("S");
+        Point = createButton("images/draw_icon.png");
+        Line = createButton("images/line_icon.png");
+        Rectangle = createButton("images/rectangle_icon.png");
+        Elipse = createButton("images/elipse_icon.png");
+        Polygon = createButton("images/polygon_icon.png");
+        newFile = createButton("Select a file.");
+
         layoutButtonPanel();
 
-        createDisplay();
-        canvasPnl.setLayout(new BorderLayout());
-        canvasPnl.add(display, BorderLayout.CENTER);
-
         getContentPane().add(canvasPnl,BorderLayout.CENTER);
-        getContentPane().add(right,BorderLayout.EAST);
         getContentPane().add(left,BorderLayout.WEST);
-        getContentPane().add(top,BorderLayout.NORTH);
         getContentPane().add(bottom,BorderLayout.SOUTH);
         repaint();
         setVisible(true);
-    }
-
-    //initialise display (replaced with canvas)
-    private void createDisplay() {
-        display = new JTextArea();
-        display.setEditable(false);
-        display.setLineWrap(true);
-        display.setFont(new Font("Arial", Font.BOLD, 24));
-        display.setBorder(BorderFactory.createEtchedBorder());
     }
 
     //create new panel with colour c
@@ -114,13 +150,13 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
         //Defaults
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.NORTH;
-        constraints.weightx = 50;
-        constraints.weighty = 50;
 
-        addToPanel(left, Load, constraints,0,0,1,1);
-        //addToPanel(left, Unload, constraints,0,1,1,1);
-        //addToPanel(left, Find, constraints,0,2,1,1);
-        //addToPanel(left, Switch, constraints,0,3,1,1);
+        addToPanel(left, Point, constraints,0,0,1,1);
+        addToPanel(left, Line, constraints,0,1,1,1);
+        addToPanel(left, Rectangle, constraints,0,2,1,1);
+        addToPanel(left, Elipse, constraints, 0,3,1,1);
+        addToPanel(left, Polygon, constraints,0,4,1,1);
+        addToPanel(left, newFile, constraints,0,5,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
@@ -134,7 +170,7 @@ public class GuiComponent extends JFrame implements ActionListener, Runnable {
     }
 
     //main class
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         SwingUtilities.invokeLater(new GuiComponent());
     }
