@@ -1,5 +1,8 @@
 package assignmentPackage;
 
+import assignmentPackage.VecCommand.VecCommandType;
+import assignmentPackage.VecFile.VecFile;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.colorchooser.ColorSelectionModel;
@@ -11,11 +14,31 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
+import static assignmentPackage.VecCommand.VecCommandType.*;
+
 public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
     //Create a file chooser
     final JFileChooser fc = new JFileChooser();
 
+    //initial size of frame
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 500;
+
+    //each panel of the frame
+    private VecFile canvasPnl;
+    private JPanel bottom;
+    private JPanel left;
+
+    //each different button
+    private JButton Point;
+    private JButton Line;
+    private JButton Rectangle;
+    private JButton Elipse;
+    private JButton Polygon;
+    private JButton imp;
+    private JButton export;
+    private JButton colour;
     private ArrayList<String> fileArrayList;
 
     @Override
@@ -23,19 +46,19 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             //throws Exception
         Object src = e.getSource();
         if (src==Point) {
-            canvasPnl.changeMode(0);
+            canvasPnl.SetType(PLOT);
         }
         else if (src==Line) {
-            canvasPnl.changeMode(1);
+            canvasPnl.SetType(LINE);
         }
         else if (src==Rectangle) {
-            canvasPnl.changeMode(2);
+            canvasPnl.SetType(RECTANGLE);
         }
         else if (src==Elipse) {
-            canvasPnl.changeMode(3);
+            canvasPnl.SetType(ELLIPSE);
         }
         else if (src==Polygon){
-            canvasPnl.changeMode(4);
+            canvasPnl.SetType(POLYGON);
         }
         else if (src==imp) {
             //In response to a button click:
@@ -79,24 +102,6 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         createGUI();
     }
 
-    //initial size of frame
-    public static final int WIDTH = 600;
-    public static final int HEIGHT = 500;
-
-    //each panel of the frame
-    private CanvasComponent canvasPnl;
-    private JPanel bottom;
-    private JPanel left;
-
-    //each different button
-    private JButton Point;
-    private JButton Line;
-    private JButton Rectangle;
-    private JButton Elipse;
-    private JButton Polygon;
-    private JButton imp;
-    private JButton export;
-    private JButton colour;
 
     private static boolean fileRead;
   
@@ -118,8 +123,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         export = createButton("images/export.png");
         colour = createButton("");
         colour.setBackground(Color.BLACK);
-
-        canvasPnl = new CanvasComponent(colour);
+        File f = new File(System.getProperty("user.dir"));
+        canvasPnl = new VecFile(f, colour );
         layoutButtonPanel();
 
 

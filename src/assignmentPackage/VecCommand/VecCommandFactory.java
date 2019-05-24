@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class VecCommandFactory {
 
-    public VecCommand ParseCommandString(String s){
+    public static VecCommand ParseCommandString(String s){
         String[] tokens = s.split("\\s");
         ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
 
@@ -47,7 +47,7 @@ public abstract class VecCommandFactory {
         }
     }
 
-    public VecCommand GetShapeCommand(VecCommandType t, ArrayList<Point2D.Double> p, Color c){
+    public static VecCommand GetShapeCommand(VecCommandType t, ArrayList<Point2D.Double> p, Color c){
         switch(t) {
             case FILL:
                 if(c==null){

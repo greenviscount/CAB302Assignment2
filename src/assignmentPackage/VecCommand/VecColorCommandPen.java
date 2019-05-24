@@ -1,5 +1,7 @@
 package assignmentPackage.VecCommand;
 
+import assignmentPackage.VecFile.VecFile;
+
 import java.awt.*;
 
 public class VecColorCommandPen extends VecColorCommand implements IVecCommandExecutable {
@@ -9,7 +11,7 @@ public class VecColorCommandPen extends VecColorCommand implements IVecCommandEx
     }
 
     @Override
-    public void Execute() {
-
+    public void Execute(Graphics2D  g, VecFile f) {
+        f.SetColor(this.color);
     }
 }

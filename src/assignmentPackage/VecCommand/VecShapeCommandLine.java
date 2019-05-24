@@ -1,5 +1,9 @@
 package assignmentPackage.VecCommand;
 
+import assignmentPackage.VecFile.VecFile;
+
+import java.awt.*;
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -11,7 +15,8 @@ public class VecShapeCommandLine extends VecShapeCommand implements IVecCommandE
     }
 
     @Override
-    public void Execute() {
-        //TODO: implement drawing method
+    public void Execute(Graphics2D  g, VecFile f) {
+        g.setPaint(f.GetColor());
+        g.draw(new Line2D.Double(points.get(0).getX(),points.get(0).getX(), points.get(1).getX(), points.get(1).getY()));
     }
 }

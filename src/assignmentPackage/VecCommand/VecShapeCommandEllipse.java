@@ -1,5 +1,8 @@
 package assignmentPackage.VecCommand;
 
+import assignmentPackage.VecFile.VecFile;
+
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -10,7 +13,7 @@ public class VecShapeCommandEllipse extends VecShapeCommand implements IVecComma
     }
 
     @Override
-    public void Execute() {
+    public void Execute(Graphics2D  g, VecFile f) {
         //TODO: implement drawing method
     }
 }
