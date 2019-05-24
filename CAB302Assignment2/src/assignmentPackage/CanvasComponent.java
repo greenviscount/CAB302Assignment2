@@ -12,26 +12,22 @@ import java.awt.Shape;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-
+import java.util.*;
 import javax.swing.*;
 
 public class CanvasComponent extends JPanel implements MouseListener{
     private ArrayList<Shape> shapes;
-    private ArrayList<Color> colours;
     private ArrayList<Point> points;
     private Vector positionList;
 
     private Point startDrag, endDrag, startClick, endClick;
     private boolean clickStatus;
     private int drawMode;
-    private JButton button;
-  
-    public CanvasComponent(JButton button) {
+    // create default vector
+    public CanvasComponent() {
+
         super();
-        this.button = button;
         shapes = new ArrayList<>();
-        colours = new ArrayList<>();
         points = new ArrayList<>();
         positionList = new Vector();
         clickStatus = true;
@@ -47,6 +43,11 @@ public class CanvasComponent extends JPanel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        startDrag = new Point(e.getX(), e.getY());
+        positionList.add("PLOT: ");
+        positionList.add(startDrag.x);
+        positionList.add(startDrag.y);
+        positionList.removeAllElements();
 
     }
     @Override
@@ -65,23 +66,27 @@ public class CanvasComponent extends JPanel implements MouseListener{
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-        Shape r;
+
         if (drawMode == 2){
             endDrag = new Point(e.getX(), e.getY());
-            r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+            Shape r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+            shapes.add(r);
+            points.add(endDrag);
+            positionList.add(endDrag.x);
+            positionList.add(endDrag.y);
+            startDrag = null;
+            endDrag = null;
         }
         else{
             endDrag = new Point(e.getX(), e.getY());
-            r = makeLine(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
-
+            Shape r = makeLine(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+            shapes.add(r);
+            points.add(endDrag);
+            positionList.add(endDrag.x);
+            positionList.add(endDrag.y);
+            startDrag = null;
+            endDrag = null;
         }
-        shapes.add(r);
-        points.add(endDrag);
-        positionList.add(endDrag.x);
-        positionList.add(endDrag.y);
-        startDrag = null;
-        endDrag = null;
-        colours.add(button.getBackground());
         System.out.println(positionList.toString());
         positionList.removeAllElements();
         repaint();
@@ -111,6 +116,7 @@ public class CanvasComponent extends JPanel implements MouseListener{
                 g2.draw(line);
             }
 
+
     }
         public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -121,9 +127,9 @@ public class CanvasComponent extends JPanel implements MouseListener{
             g2.setStroke(new BasicStroke(2));
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
-            for (int i=0;i<shapes.size();i++) {
-                g2.setPaint(colours.get(i));
-                g2.draw(shapes.get(i));
+            for (Shape s : shapes) {
+                g2.setPaint(Color.BLACK);
+                g2.draw(s);
             }
 
             if (startDrag != null && endDrag != null) {

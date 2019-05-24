@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.*;
 
 public class testGUI extends JFrame implements Runnable{
 
@@ -21,14 +20,14 @@ public class testGUI extends JFrame implements Runnable{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        canvas = new CanvasComponent(new JButton());
+        canvas = new CanvasComponent();
         getContentPane().add(canvas, BorderLayout.CENTER);
         repaint();
         setVisible(true);
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
+
         SwingUtilities.invokeLater(new testGUI());
     }
 }
-
