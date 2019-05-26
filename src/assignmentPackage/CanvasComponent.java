@@ -13,6 +13,7 @@ import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.*;
 
@@ -112,38 +113,38 @@ public class CanvasComponent extends JPanel implements MouseListener{
             }
 
     }
-        public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g;
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            paintBackground(g2);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        paintBackground(g2);
 
-            g2.setStroke(new BasicStroke(2));
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
+        g2.setStroke(new BasicStroke(2));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
-            for (int i=0;i<shapes.size();i++) {
-                g2.setPaint(colours.get(i));
-                g2.draw(shapes.get(i));
-            }
-
-            if (startDrag != null && endDrag != null) {
-                g2.setPaint(Color.LIGHT_GRAY);
-                Shape r;
-                if (drawMode == 2) {
-                    r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
-                }
-                else {
-                    r = makeLine(startDrag.x,startDrag.y,endDrag.x,endDrag.y);
-                }
-                g2.draw(r);
-            }
+        for (int i=0;i<shapes.size();i++) {
+            g2.setPaint(colours.get(i));
+            g2.draw(shapes.get(i));
         }
 
-        private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
-            return new Line2D.Float(x1, y1, x2, y2);
-        }
-
-        private Rectangle2D.Float makeRectangle(int x1, int y1, int x2, int y2) {
-            return new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+        if (startDrag != null && endDrag != null) {
+            g2.setPaint(Color.LIGHT_GRAY);
+            Shape r;
+            if (drawMode == 2) {
+                r = makeRectangle(startDrag.x, startDrag.y, endDrag.x, endDrag.y);
+            }
+            else {
+                r = makeLine(startDrag.x,startDrag.y,endDrag.x,endDrag.y);
+            }
+            g2.draw(r);
         }
     }
+
+    private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
+        return new Line2D.Float(x1, y1, x2, y2);
+    }
+
+    private Rectangle2D.Float makeRectangle(int x1, int y1, int x2, int y2) {
+        return new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    }
+}
