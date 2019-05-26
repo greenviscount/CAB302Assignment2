@@ -39,7 +39,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton imp;
     private JButton export;
     private JButton colour;
+    private JButton fill;
+    private JButton fillcolour;
     private ArrayList<String> fileArrayList;
+    private boolean fillon;
 
     @Override
     public void actionPerformed(ActionEvent e){
@@ -60,6 +63,16 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         else if (src==Polygon){
             canvasPnl.SetType(POLYGON);
         }
+        else if (src==fill){
+            canvasPnl.SetFill(!canvasPnl.GetFill());
+            canvasPnl.SetColourCommand(FILL);
+        }
+        else if (src==colour || src==fillcolour) {
+            ColourChooser frejm = new ColourChooser((JButton) src);
+            frejm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frejm.setVisible(true);
+        }
+
         else if (src==imp) {
             //In response to a button click:
             fileRead = true;
@@ -84,11 +97,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         else if (src==export) {
             canvasPnl.SaveFile();
         }
-        else if (src==colour) {
-            ColourChooser frejm = new ColourChooser(colour);
-            frejm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frejm.setVisible(true);
-        }
+
     }
 
     @Override
@@ -123,9 +132,13 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         export = createButton("images/export.png");
         colour = createButton("");
         colour.setBackground(Color.BLACK);
+        fill = createButton("images/fill.png");
+        fillcolour = createButton("");
+        fillcolour.setBackground(Color.BLACK);
+
         File f = new File(System.getProperty("user.dir")+"\\newFile.vec");
         System.out.println(f.getAbsolutePath());
-        canvasPnl = new VecFile(f, colour );
+        canvasPnl = new VecFile(f, colour, fillcolour );
         layoutButtonPanel();
 
 
@@ -174,7 +187,9 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(left, Rectangle, constraints,0,2,1,1);
         addToPanel(left, Elipse, constraints, 0,3,1,1);
         addToPanel(left, Polygon, constraints,0,4,1,1);
-        addToPanel(left,colour,constraints,0,5,1,2);
+        addToPanel(left,colour,constraints,0,5,1,1);
+        addToPanel(left,fill,constraints,0,6,1,1);
+        addToPanel(left,fillcolour,constraints,0,7,1,1);
         addToPanel(bottom,imp,constraints,0,0,1,1);
         addToPanel(bottom,export,constraints,1,0,1,1);
     }
