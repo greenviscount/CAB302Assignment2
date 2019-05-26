@@ -19,28 +19,28 @@ public abstract class VecCommandFactory {
                 }
             case "PEN": return new VecColorCommandPen(Color.decode(tokens[1]));
             case "PLOT":
-                for(int i = 1; i<tokens.length; i+=2){
-                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[i])));
+                for(int i = 1; i<tokens.length; i++){
+                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[++i])));
                 }
                 return new VecShapeCommandPlot(points);
             case "LINE":
-                for(int i = 1; i<tokens.length; i+=2){
-                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[i])));
+                for(int i = 1; i<tokens.length; i++){
+                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[++i])));
                 }
                 return new VecShapeCommandLine(points);
             case "RECTANGLE":
-                for(int i = 1; i<tokens.length; i+=2){
-                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[i])));
+                for(int i = 1; i<tokens.length; i++){
+                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[++i])));
                 }
                 return new VecShapeCommandRectangle(points);
             case "ELLIPSE":
-                for(int i = 1; i<tokens.length; i+=2){
-                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[i])));
+                for(int i = 1; i<tokens.length; i++){
+                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[++i])));
                 }
                 return new VecShapeCommandEllipse(points);
             case "POLYGON":
-                for(int i = 1; i<tokens.length; i+=2){
-                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[i])));
+                for(int i = 1; i<tokens.length; i++){
+                    points.add(new Point2D.Double(Double.parseDouble(tokens[i]), Double.parseDouble(tokens[++i])));
                 }
                 return new VecShapeCommandPolygon(points);
             default:return null;

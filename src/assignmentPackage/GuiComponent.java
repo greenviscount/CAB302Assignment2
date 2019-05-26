@@ -78,11 +78,11 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
                 }
             }
             catch(Exception e2){
-
+                e2.printStackTrace();
             }
         }
         else if (src==export) {
-            //export file
+            canvasPnl.SaveFile();
         }
         else if (src==colour) {
             ColourChooser frejm = new ColourChooser(colour);
@@ -123,7 +123,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         export = createButton("images/export.png");
         colour = createButton("");
         colour.setBackground(Color.BLACK);
-        File f = new File(System.getProperty("user.dir"));
+        File f = new File(System.getProperty("user.dir")+"\\newFile.vec");
+        System.out.println(f.getAbsolutePath());
         canvasPnl = new VecFile(f, colour );
         layoutButtonPanel();
 

@@ -20,4 +20,8 @@ public abstract class VecColorCommand extends VecCommand implements IVecCommandP
     public Color GetColor(){
         return this.color;
     }
+
+    public void SetColor(Color c){
+        this.color = c;
+    }
 }

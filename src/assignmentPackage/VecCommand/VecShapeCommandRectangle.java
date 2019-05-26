@@ -16,7 +16,7 @@ public class VecShapeCommandRectangle extends VecShapeCommand implements IVecCom
 
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
-        g.setPaint(f.GetColor());
+        g.setPaint(f.GetPenColor());
         g.draw(new Rectangle2D.Double(points.get(0).getX(),points.get(0).getY(), Math.abs(points.get(1).getX() -points.get(0).getX()), Math.abs(points.get(0).getY()-points.get(1).getY())));
 
     }

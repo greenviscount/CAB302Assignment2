@@ -12,6 +12,6 @@ public class VecColorCommandPen extends VecColorCommand implements IVecCommandEx
 
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
-        f.SetColor(this.color);
+        f.SetPenColor(this.color);
     }
 }
