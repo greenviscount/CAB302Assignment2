@@ -68,7 +68,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             canvasPnl.SetColourCommand(FILL);
         }
         else if (src==colour || src==fillcolour) {
-            ColourChooser frejm = new ColourChooser((JButton) src);
+            ColourChooser frejm = new ColourChooser((JButton) src, fill);
             frejm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frejm.setVisible(true);
         }
@@ -112,6 +112,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     }
 
 
+    public void setPen() {canvasPnl.SetColourCommand(PEN);}
+
     private static boolean fileRead;
   
     //create and add panels to frame
@@ -130,10 +132,14 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Polygon = createButton("images/polygon_icon.png");
         imp = createButton("images/import.png");
         export = createButton("images/export.png");
+
         colour = createButton("");
+        colour.setName("Pen Colour");
         colour.setBackground(Color.BLACK);
+
         fill = createButton("images/fill.png");
         fillcolour = createButton("");
+        fillcolour.setName("Fill Colour");
         fillcolour.setBackground(Color.BLACK);
 
         File f = new File(System.getProperty("user.dir")+"\\newFile.vec");

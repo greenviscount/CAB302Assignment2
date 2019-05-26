@@ -14,7 +14,7 @@ public class VecColorCommandFill extends VecColorCommand implements IVecCommandE
 
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
-        //f.SetFillColor(this.color);
+        f.SetFillColor(this.color);
         f.SetFill(true);
     }
 }

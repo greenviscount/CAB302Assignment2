@@ -147,7 +147,7 @@ public class VecFile extends JPanel implements MouseListener {
                 if(fill){
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetFill){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, this.fillColor));
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, this.filling.getBackground()));
                         canSetFill = false;
                     }else{
                         ChangeLastColorCommandColor(this.penColor, FILL);
@@ -163,13 +163,14 @@ public class VecFile extends JPanel implements MouseListener {
                 if(penChanged){
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetPen){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, this.penColor));
+                        SetPenColor(this.pen.getBackground());
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, this.pen.getBackground()));
                         canSetPen = false;
                     }else{
-                        ChangeLastColorCommandColor(this.penColor, PEN);
+                        ChangeLastColorCommandColor(this.pen.getBackground(), PEN);
                     }
                 }else{
-                    if(!canSetPen && usedShapeCommand){
+                    if(usedShapeCommand){
                         VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, null));
                     }else{
                         RemoveLastColorCommand(PEN);
@@ -215,7 +216,10 @@ public class VecFile extends JPanel implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         endDrag = new Point2D.Double(e.getX(), e.getY());
         points.add(new Point2D.Double(e.getX(), e.getY()));
-
+        if (this.penColor != this.pen.getBackground()) {
+            penChanged = true;
+            SetColourCommand(PEN);
+        }
         switch(this.type){
             case RECTANGLE:
                 if(points.size()==2){
@@ -223,6 +227,7 @@ public class VecFile extends JPanel implements MouseListener {
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
+                    canSetPen = true;
                     break;
                 }else{
                     break;
@@ -234,6 +239,7 @@ public class VecFile extends JPanel implements MouseListener {
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
+                    canSetPen = true;
                     break;
                 }else{
                     break;
@@ -246,8 +252,6 @@ public class VecFile extends JPanel implements MouseListener {
 
         startDrag = null;
         endDrag = null;
-        fillColor = filling.getBackground();
-        penColor = pen.getBackground();
 
         repaint();
     }
@@ -286,6 +290,7 @@ public class VecFile extends JPanel implements MouseListener {
         g2.setStroke(new BasicStroke(2));
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
+        SetPenColor(Color.BLACK);
         SetFill(false);
             RenderFile(g2);
 //        for (int i=0;i<shapes.size();i++) {
@@ -307,8 +312,6 @@ public class VecFile extends JPanel implements MouseListener {
             g2.draw(r);
             g2.setPaint(this.penColor);
         }
-        this.penColor = pen.getBackground();
-        this.fillColor = filling.getBackground();
     }
 
     public void SaveFile(){
