@@ -23,7 +23,5 @@ public class VecShapeCommandRectangle extends VecShapeCommand implements IVecCom
         }
         g.setPaint(f.GetPenColor());
         g.draw(r);
-
-
     }
 }

@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -211,8 +212,22 @@ public class VecFile extends JPanel implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        endDrag = new Point2D.Double(e.getX(), e.getY());
-        points.add(new Point2D.Double(e.getX(), e.getY()));
+        if(SwingUtilities.isRightMouseButton(e)){
+            System.out.println("we get here though");
+            if(!(this.type==PLOT)){
+                points.add(new Point2D.Double(e.getX(), e.getY()));
+            }
+            endDrag = startDrag;
+        }else{
+            if(!(type == PLOT)){
+                endDrag = new Point2D.Double(e.getX(), e.getY());
+                points.add(new Point2D.Double(e.getX(), e.getY()));
+            }else{
+                points = new ArrayList<Point2D.Double>();
+                points.add(new Point2D.Double(e.getX(),e.getY()));
+            }
+        }
+
         if (this.penColor != this.pen.getBackground()) {
             penChanged = true;
             SetColourCommand(PEN);
@@ -242,8 +257,39 @@ public class VecFile extends JPanel implements MouseListener {
                     break;
                 }
             case PLOT:
+                if(points.size()==1){
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points, null));
+                    points = new ArrayList<Point2D.Double>();
+                    usedShapeCommand = true;
+                    canSetFill = true;
+                    canSetPen = true;
+                    break;
+                }else{
+                    points = new ArrayList<Point2D.Double>();
+                    break;
+                }
             case POLYGON:
+                if(points.size()<1 && SwingUtilities.isRightMouseButton(e)){
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
+                    points = new ArrayList<Point2D.Double>();
+                    usedShapeCommand = true;
+                    canSetFill = true;
+                    canSetPen = true;
+                    break;
+                }else{
+                    break;
+                }
             case ELLIPSE:
+                if(points.size()==2){
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points, null));
+                    points = new ArrayList<Point2D.Double>();
+                    usedShapeCommand = true;
+                    canSetFill = true;
+                    canSetPen = true;
+                    break;
+                }else{
+                    break;
+                }
             default:
         }
 
@@ -298,11 +344,15 @@ public class VecFile extends JPanel implements MouseListener {
             Shape r;
             if (type == RECTANGLE) {
                 r = makeRectangle((int)startDrag.x, (int)startDrag.y, (int)endDrag.x, (int)endDrag.y);
+                g2.draw(r);
             }
-            else {
+            else if(type == LINE || type == POLYGON){
                 r = makeLine((int)startDrag.x,(int)startDrag.y,(int)endDrag.x,(int)endDrag.y);
+                g2.draw(r);
+            }else if(type == ELLIPSE){
+                r = makeEllipse((int)startDrag.x, (int)startDrag.y, (int)endDrag.x, (int)endDrag.y);
+                g2.draw(r);
             }
-            g2.draw(r);
             g2.setPaint(this.penColor);
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
@@ -338,5 +388,9 @@ public class VecFile extends JPanel implements MouseListener {
 
     private Rectangle2D.Float makeRectangle(int x1, int y1, int x2, int y2) {
         return new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    }
+
+    private Ellipse2D.Float makeEllipse(int x1, int y1, int x2, int y2){
+        return new Ellipse2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
     }
 }
