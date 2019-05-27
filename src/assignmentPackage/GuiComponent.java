@@ -26,7 +26,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     public static final int HEIGHT = 500;
 
     //each panel of the frame
-    private VecFile canvasPnl;
+    private JTabbedPane canvasArea;
+    private ArrayList<VecFile> canvases;
     private JPanel bottom;
     private JPanel left;
 
@@ -42,30 +43,41 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton fill;
     private JButton fillcolour;
     private ArrayList<String> fileArrayList;
-    private boolean fillon;
 
     @Override
     public void actionPerformed(ActionEvent e){
             //throws Exception
         Object src = e.getSource();
         if (src==Point) {
-            canvasPnl.SetType(PLOT);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetType(PLOT);
+            }
         }
         else if (src==Line) {
-            canvasPnl.SetType(LINE);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetType(LINE);
+            }
         }
         else if (src==Rectangle) {
-            canvasPnl.SetType(RECTANGLE);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetType(RECTANGLE);
+            }
         }
         else if (src==Elipse) {
-            canvasPnl.SetType(ELLIPSE);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetType(ELLIPSE);
+            }
         }
         else if (src==Polygon){
-            canvasPnl.SetType(POLYGON);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetType(POLYGON);
+            }
         }
         else if (src==fill){
-            canvasPnl.SetFill(!canvasPnl.GetFill());
-            canvasPnl.SetColourCommand(FILL);
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetFill(!canvasPnl.GetFill());
+                canvasPnl.SetColourCommand(FILL);
+            }
         }
         else if (src==colour || src==fillcolour) {
             ColourChooser frejm = new ColourChooser((JButton) src, fill);
@@ -83,19 +95,17 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             System.out.println(file);
             try {
                 // pass the path to the file as a parameter
-                FileReader fr = new FileReader(file);
-                int i;
-                while ((i = fr.read()) != -1) {
-
-                    //System.out.print((char) i);
-                }
+                File f = new File(System.getProperty("user.dir")+"\\"+file);
+                System.out.println(f.getAbsolutePath());
+                createCanvas(f);
             }
             catch(Exception e2){
                 e2.printStackTrace();
             }
         }
         else if (src==export) {
-            canvasPnl.SaveFile();
+            int i = canvasArea.getSelectedIndex();
+            canvases.get(i).SaveFile();
         }
 
     }
@@ -112,7 +122,17 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     }
 
 
-    public void setPen() {canvasPnl.SetColourCommand(PEN);}
+    public void setPen() {
+        for (VecFile canvas : canvases) {
+            canvas.SetColourCommand(PEN);
+        }
+    }
+
+    private void createCanvas(File f) {
+        VecFile canvasPnl =  new VecFile(f, colour, fillcolour );
+        canvasArea.addTab(f.getName(), canvasPnl);
+        canvases.add(canvasPnl);
+    }
 
     private static boolean fileRead;
   
@@ -122,6 +142,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        canvases = new ArrayList<VecFile>();
         bottom = createPanel(Color.GRAY);
         left = createPanel(Color.GRAY);
 
@@ -144,11 +165,12 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
         File f = new File(System.getProperty("user.dir")+"\\newFile.vec");
         System.out.println(f.getAbsolutePath());
-        canvasPnl = new VecFile(f, colour, fillcolour );
+
+        canvasArea = new JTabbedPane();
         layoutButtonPanel();
+        createCanvas(f);
 
-
-        getContentPane().add(canvasPnl,BorderLayout.CENTER);
+        getContentPane().add(canvasArea,BorderLayout.CENTER);
         getContentPane().add(left,BorderLayout.WEST);
         getContentPane().add(bottom,BorderLayout.SOUTH);
         repaint();
