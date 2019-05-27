@@ -212,19 +212,13 @@ public class VecFile extends JPanel implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(SwingUtilities.isRightMouseButton(e)){
-            System.out.println("we get here though");
-            if(!(this.type==PLOT)){
-                points.add(new Point2D.Double(e.getX(), e.getY()));
-            }
-            endDrag = startDrag;
-        }else{
-            if(!(type == PLOT)){
-                endDrag = new Point2D.Double(e.getX(), e.getY());
-                points.add(new Point2D.Double(e.getX(), e.getY()));
-            }else{
+        if(!SwingUtilities.isRightMouseButton(e)){
+            if(type == PLOT){
                 points = new ArrayList<Point2D.Double>();
                 points.add(new Point2D.Double(e.getX(),e.getY()));
+            }else{
+                endDrag = new Point2D.Double(e.getX(), e.getY());
+                points.add(new Point2D.Double(e.getX(), e.getY()));
             }
         }
 
@@ -269,13 +263,18 @@ public class VecFile extends JPanel implements MouseListener {
                     break;
                 }
             case POLYGON:
-                if(points.size()<1 && SwingUtilities.isRightMouseButton(e)){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
-                    points = new ArrayList<Point2D.Double>();
-                    usedShapeCommand = true;
-                    canSetFill = true;
-                    canSetPen = true;
-                    break;
+                if(SwingUtilities.isRightMouseButton(e)){
+                    if(points.size()>2){
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
+                        points = new ArrayList<Point2D.Double>();
+                        usedShapeCommand = true;
+                        canSetFill = true;
+                        canSetPen = true;
+                        break;
+                    }else{
+                        points = new ArrayList<Point2D.Double>();
+                        break;
+                    }
                 }else{
                     break;
                 }
@@ -293,7 +292,7 @@ public class VecFile extends JPanel implements MouseListener {
             default:
         }
 
-        startDrag = null;
+        startDrag = (type==POLYGON)? null:endDrag;
         endDrag = null;
 
         repaint();
