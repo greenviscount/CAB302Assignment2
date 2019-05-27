@@ -74,10 +74,6 @@ public class VecFile extends JPanel implements MouseListener {
         return this.name;
     }
 
-    public void Save(){
-
-    }
-
     public void AddCommand(VecCommand c){
         VecCommandStack.push(c);
     }
@@ -176,6 +172,7 @@ public class VecFile extends JPanel implements MouseListener {
                         RemoveLastColorCommand(PEN);
                     }
                 }
+            default:break;
         }
     }
 
@@ -288,15 +285,11 @@ public class VecFile extends JPanel implements MouseListener {
         paintBackground(g2);
 
         g2.setStroke(new BasicStroke(2));
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
         SetPenColor(Color.BLACK);
         SetFill(false);
             RenderFile(g2);
-//        for (int i=0;i<shapes.size();i++) {
-//            g2.setPaint(colours.get(i));
-//            g2.draw(shapes.get(i));
-//        }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
         if (startDrag != null && endDrag != null) {
             System.out.println(startDrag.toString()+" "+endDrag.toString());
@@ -312,6 +305,8 @@ public class VecFile extends JPanel implements MouseListener {
             g2.draw(r);
             g2.setPaint(this.penColor);
         }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+
     }
 
     public void SaveFile(){
