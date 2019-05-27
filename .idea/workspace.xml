@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85938f8c-4261-40c9-ad7a-2ebe30a1ffdc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example2.vec" beforeDir="false" afterPath="$PROJECT_DIR$/example2.vec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newFile.vec" beforeDir="false" afterPath="$PROJECT_DIR$/newFile.vec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,10 +20,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="170" column="8" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
+            <state relative-caret-position="68">
+              <caret line="143" column="65" lean-forward="true" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
               <folding>
-                <element signature="e#3637#3638#0" expanded="true" />
+                <element signature="e#4271#4272#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -34,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="325" column="12" lean-forward="true" selection-start-line="325" selection-start-column="12" selection-end-line="325" selection-end-column="12" />
+            <state relative-caret-position="17">
+              <caret line="214" column="13" lean-forward="true" selection-start-line="214" selection-start-column="13" selection-end-line="214" selection-end-column="13" />
               <folding>
                 <element signature="e#2656#2657#0" expanded="true" />
                 <element signature="e#2689#2690#0" expanded="true" />
@@ -135,9 +133,9 @@
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" />
+        <option value="$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" />
       </list>
     </option>
@@ -194,7 +192,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558851439365" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558937530270" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -269,7 +267,7 @@
       <window_info id="Favorites" order="6" side_tool="true" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32405892" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32405892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -520,13 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
@@ -534,10 +525,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="325" column="12" lean-forward="true" selection-start-line="325" selection-start-column="12" selection-end-line="325" selection-end-column="12" />
+        <state relative-caret-position="17">
+          <caret line="214" column="13" lean-forward="true" selection-start-line="214" selection-start-column="13" selection-end-line="214" selection-end-column="13" />
           <folding>
             <element signature="e#2656#2657#0" expanded="true" />
             <element signature="e#2689#2690#0" expanded="true" />
@@ -552,10 +550,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="170" column="8" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
+        <state relative-caret-position="68">
+          <caret line="143" column="65" lean-forward="true" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
           <folding>
-            <element signature="e#3637#3638#0" expanded="true" />
+            <element signature="e#4271#4272#0" expanded="true" />
           </folding>
         </state>
       </provider>

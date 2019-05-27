@@ -37,11 +37,14 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton Rectangle;
     private JButton Elipse;
     private JButton Polygon;
-    private JButton imp;
-    private JButton export;
     private JButton colour;
     private JButton fill;
     private JButton fillcolour;
+
+    private JButton newPage;
+    private JButton imp;
+    private JButton export;
+
     private ArrayList<String> fileArrayList;
 
     @Override
@@ -85,6 +88,22 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             frejm.setVisible(true);
         }
 
+        else if (src==newPage) {
+            FileDialog dialog = new FileDialog((Frame)null, "Select New File Location");
+            dialog.setMode(FileDialog.SAVE);
+            dialog.setVisible(true);
+            String file = dialog.getFile();
+            try {
+                // pass the path to the file as a parameter
+                File f = new File(System.getProperty("user.dir")+"\\"+file);
+                System.out.println(f.getAbsolutePath());
+                createCanvas(f);
+            }
+            catch(Exception e2){
+                e2.printStackTrace();
+            }
+        }
+
         else if (src==imp) {
             //In response to a button click:
             fileRead = true;
@@ -121,13 +140,6 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         createGUI();
     }
 
-
-    public void setPen() {
-        for (VecFile canvas : canvases) {
-            canvas.SetColourCommand(PEN);
-        }
-    }
-
     private void createCanvas(File f) {
         VecFile canvasPnl =  new VecFile(f, colour, fillcolour );
         canvasArea.addTab(f.getName(), canvasPnl);
@@ -151,8 +163,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Rectangle = createButton("images/rectangle_icon.png");
         Elipse = createButton("images/elipse_icon.png");
         Polygon = createButton("images/polygon_icon.png");
+
         imp = createButton("images/import.png");
         export = createButton("images/export.png");
+        newPage = createButton("images/new_page.png");
 
         colour = createButton("");
         colour.setName("Pen Colour");
@@ -218,8 +232,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(left,colour,constraints,0,5,1,1);
         addToPanel(left,fill,constraints,0,6,1,1);
         addToPanel(left,fillcolour,constraints,0,7,1,1);
-        addToPanel(bottom,imp,constraints,0,0,1,1);
-        addToPanel(bottom,export,constraints,1,0,1,1);
+
+        addToPanel(bottom,newPage,constraints,0,0,1,1);
+        addToPanel(bottom,imp,constraints,1,0,1,1);
+        addToPanel(bottom,export,constraints,2,0,1,1);
     }
 
     //add component c to panel jp in position x, y with size w by h
