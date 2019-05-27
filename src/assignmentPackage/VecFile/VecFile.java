@@ -37,6 +37,7 @@ public class VecFile extends JPanel implements MouseListener {
     private boolean canSetFill = true;
     private boolean canSetPen = true;
     private boolean usedShapeCommand = false;
+    private boolean polyfirst = true;
     private VecCommandType type = LINE;
     private VecCommandType colorType = PEN;
     private int drawMode;
@@ -67,6 +68,12 @@ public class VecFile extends JPanel implements MouseListener {
             public void mouseDragged(MouseEvent e) {
                 endDrag = new Point2D.Double(e.getX(), e.getY());
                 repaint();
+            }
+            public void mouseMoved(MouseEvent e){
+                if (type == POLYGON && !polyfirst){
+                    endDrag = new Point2D.Double(e.getX(), e.getY());
+                    repaint();
+                }
             }
         });
     }
@@ -166,12 +173,6 @@ public class VecFile extends JPanel implements MouseListener {
                     }else{
                         ChangeLastColorCommandColor(this.pen.getBackground(), PEN);
                     }
-                }else{
-                    if(usedShapeCommand){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, null));
-                    }else{
-                        RemoveLastColorCommand(PEN);
-                    }
                 }
             default:break;
         }
@@ -270,6 +271,8 @@ public class VecFile extends JPanel implements MouseListener {
                         usedShapeCommand = true;
                         canSetFill = true;
                         canSetPen = true;
+                        polyfirst=true;
+                        endDrag=null;
                         break;
                     }else{
                         points = new ArrayList<Point2D.Double>();
@@ -292,7 +295,7 @@ public class VecFile extends JPanel implements MouseListener {
             default:
         }
 
-        startDrag = (type==POLYGON)? null:endDrag;
+        startDrag = (type==POLYGON)? endDrag:null;
         endDrag = null;
 
         repaint();
@@ -353,6 +356,15 @@ public class VecFile extends JPanel implements MouseListener {
                 g2.draw(r);
             }
             g2.setPaint(this.penColor);
+        }
+        if(type==POLYGON)
+        {
+            polyfirst=false;
+            for(int i =0 ; i<points.size()-1; i++){
+                Shape r;
+                r = makeLine((int)points.get(i).x,(int)points.get(i).y,(int)points.get(++i).x,(int)points.get(i).y);
+                g2.draw(r);
+            }
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
 
