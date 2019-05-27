@@ -17,8 +17,10 @@ public class VecShapeCommandPolygon extends VecShapeCommand implements IVecComma
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         Path2D.Double r = new Path2D.Double();
-        r.moveTo(points.get(0).getX(), points.get(0).getY());
+        Point2D.Double p1 = f.GetActualPoint(points.get(0));
+        r.moveTo(p1.getX(), p1.getY());
         for (Point2D.Double point:this.points) {
+            point = f.GetActualPoint(point);
             r.lineTo(point.getX(),point.getY());
         }
         if (f.GetFill()) {

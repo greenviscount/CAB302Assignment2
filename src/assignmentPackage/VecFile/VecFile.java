@@ -207,7 +207,7 @@ public class VecFile extends JPanel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point2D.Double(e.getX(), e.getY());
-        points.add( new Point2D.Double(e.getX(), e.getY()));
+        points.add( GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
         repaint();
     }
 
@@ -216,10 +216,10 @@ public class VecFile extends JPanel implements MouseListener {
         if(!SwingUtilities.isRightMouseButton(e)){
             if(type == PLOT){
                 points = new ArrayList<Point2D.Double>();
-                points.add(new Point2D.Double(e.getX(),e.getY()));
+                points.add(GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
             }else{
                 endDrag = new Point2D.Double(e.getX(), e.getY());
-                points.add(new Point2D.Double(e.getX(), e.getY()));
+                points.add(GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
             }
         }
 
@@ -391,6 +391,18 @@ public class VecFile extends JPanel implements MouseListener {
             e.printStackTrace();
         }
 
+    }
+
+    public Point2D.Double GetRelativePoint(Point2D.Double p){
+        Double width = (double)getWidth();
+        Double height = (double)getHeight();
+        return new Point2D.Double(p.getX()/height, p.getY()/width);
+    }
+
+    public Point2D.Double GetActualPoint(Point2D.Double p){
+        Double width = (double)getWidth();
+        Double height = (double)getHeight();
+        return new Point2D.Double(p.getX()*height, p.getY()*width);
     }
 
     private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
