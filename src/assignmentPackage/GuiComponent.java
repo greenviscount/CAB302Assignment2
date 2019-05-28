@@ -21,6 +21,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     //Create a file chooser
     final JFileChooser fc = new JFileChooser();
 
+    private boolean fillon =false;
     //initial size of frame
     public static final int WIDTH = 600;
     public static final int HEIGHT = 500;
@@ -99,17 +100,15 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         else if (src==fill){
             if (fill.getBackground() == Color.LIGHT_GRAY) {
                 fill.setBackground(Color.WHITE);
-                for (VecFile canvasPnl : canvases) {
-                    canvasPnl.SetFill(true);
-                    canvasPnl.SetColourCommand(FILL);
-                }
+                fillon = true;
             }
             else {
                 fill.setBackground(Color.LIGHT_GRAY);
-                for (VecFile canvasPnl : canvases) {
-                    canvasPnl.SetFill(false);
-                    canvasPnl.SetColourCommand(FILL);
-                }
+                fillon = false;
+            }
+            for (VecFile canvasPnl : canvases) {
+                canvasPnl.SetFill(fillon);
+                canvasPnl.SetColourCommand(FILL);
             }
         }
         else if (src==colour || src==fillcolour) {
@@ -204,6 +203,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         canvasArea.addTab(f.getName(), canvas);
         createTabHead(f.getName());
         canvases.add(canvasPnl);
+        canvasPnl.SetFill(fillon);
+        fill.doClick();
+        fill.doClick();
+        current.doClick();
     }
 
     private void setButton(JButton button) {
@@ -231,6 +234,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Rectangle = createButton("images/rectangle_icon.png");
         Elipse = createButton("images/elipse_icon.png");
         Polygon = createButton("images/polygon_icon.png");
+        current = Line;
 
         imp = createButton("images/import.png");
         export = createButton("images/export.png");
@@ -247,12 +251,11 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
         File f = new File(System.getProperty("user.dir")+"\\newFile.vec");
         System.out.println(f.getAbsolutePath());
-
         canvasArea = new JTabbedPane();
         layoutButtonPanel();
         createCanvas(f);
 
-        current = Line;
+
         current.setBackground(Color.WHITE);
         getContentPane().add(canvasArea,BorderLayout.CENTER);
         getContentPane().add(left,BorderLayout.WEST);
