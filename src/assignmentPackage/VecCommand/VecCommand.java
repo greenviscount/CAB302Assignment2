@@ -11,5 +11,4 @@ public abstract class VecCommand {
     public VecCommandType GetType(){
         return this.type;
     }
-
 }
