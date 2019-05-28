@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -36,6 +37,7 @@ public class VecFile extends JPanel implements MouseListener {
     private boolean canSetFill = true;
     private boolean canSetPen = true;
     private boolean usedShapeCommand = false;
+    private boolean polyfirst = true;
     private VecCommandType type = LINE;
     private VecCommandType colorType = PEN;
     private int drawMode;
@@ -67,15 +69,17 @@ public class VecFile extends JPanel implements MouseListener {
                 endDrag = new Point2D.Double(e.getX(), e.getY());
                 repaint();
             }
+            public void mouseMoved(MouseEvent e){
+                if (type == POLYGON && !polyfirst){
+                    endDrag = new Point2D.Double(e.getX(), e.getY());
+                    repaint();
+                }
+            }
         });
     }
 
     public String GetName(){
         return this.name;
-    }
-
-    public void Save(){
-
     }
 
     public void AddCommand(VecCommand c){
@@ -169,13 +173,8 @@ public class VecFile extends JPanel implements MouseListener {
                     }else{
                         ChangeLastColorCommandColor(this.pen.getBackground(), PEN);
                     }
-                }else{
-                    if(usedShapeCommand){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, null));
-                    }else{
-                        RemoveLastColorCommand(PEN);
-                    }
                 }
+            default:break;
         }
     }
 
@@ -208,14 +207,22 @@ public class VecFile extends JPanel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point2D.Double(e.getX(), e.getY());
-        points.add( new Point2D.Double(e.getX(), e.getY()));
+        points.add( GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
         repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        endDrag = new Point2D.Double(e.getX(), e.getY());
-        points.add(new Point2D.Double(e.getX(), e.getY()));
+        if(!SwingUtilities.isRightMouseButton(e)){
+            if(type == PLOT){
+                points = new ArrayList<Point2D.Double>();
+                points.add(GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
+            }else{
+                endDrag = new Point2D.Double(e.getX(), e.getY());
+                points.add(GetRelativePoint(new  Point2D.Double(e.getX(), e.getY())));
+            }
+        }
+
         if (this.penColor != this.pen.getBackground()) {
             penChanged = true;
             SetColourCommand(PEN);
@@ -245,12 +252,50 @@ public class VecFile extends JPanel implements MouseListener {
                     break;
                 }
             case PLOT:
+                if(points.size()==1){
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points, null));
+                    points = new ArrayList<Point2D.Double>();
+                    usedShapeCommand = true;
+                    canSetFill = true;
+                    canSetPen = true;
+                    break;
+                }else{
+                    points = new ArrayList<Point2D.Double>();
+                    break;
+                }
             case POLYGON:
+                if(SwingUtilities.isRightMouseButton(e)){
+                    if(points.size()>2){
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
+                        points = new ArrayList<Point2D.Double>();
+                        usedShapeCommand = true;
+                        canSetFill = true;
+                        canSetPen = true;
+                        polyfirst=true;
+                        endDrag=null;
+                        break;
+                    }else{
+                        points = new ArrayList<Point2D.Double>();
+                        break;
+                    }
+                }else{
+                    break;
+                }
             case ELLIPSE:
+                if(points.size()==2){
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points, null));
+                    points = new ArrayList<Point2D.Double>();
+                    usedShapeCommand = true;
+                    canSetFill = true;
+                    canSetPen = true;
+                    break;
+                }else{
+                    break;
+                }
             default:
         }
 
-        startDrag = null;
+        startDrag = (type==POLYGON)? endDrag:null;
         endDrag = null;
 
         repaint();
@@ -288,15 +333,11 @@ public class VecFile extends JPanel implements MouseListener {
         paintBackground(g2);
 
         g2.setStroke(new BasicStroke(2));
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
         SetPenColor(Color.BLACK);
         SetFill(false);
             RenderFile(g2);
-//        for (int i=0;i<shapes.size();i++) {
-//            g2.setPaint(colours.get(i));
-//            g2.draw(shapes.get(i));
-//        }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
         if (startDrag != null && endDrag != null) {
             System.out.println(startDrag.toString()+" "+endDrag.toString());
@@ -305,13 +346,28 @@ public class VecFile extends JPanel implements MouseListener {
             Shape r;
             if (type == RECTANGLE) {
                 r = makeRectangle((int)startDrag.x, (int)startDrag.y, (int)endDrag.x, (int)endDrag.y);
+                g2.draw(r);
             }
-            else {
+            else if(type == LINE || type == POLYGON){
                 r = makeLine((int)startDrag.x,(int)startDrag.y,(int)endDrag.x,(int)endDrag.y);
+                g2.draw(r);
+            }else if(type == ELLIPSE){
+                r = makeEllipse((int)startDrag.x, (int)startDrag.y, (int)endDrag.x, (int)endDrag.y);
+                g2.draw(r);
             }
-            g2.draw(r);
             g2.setPaint(this.penColor);
         }
+        if(type==POLYGON)
+        {
+            polyfirst=false;
+            for(int i =0 ; i<points.size()-1; i++){
+                Shape r;
+                r = makeLine((int)points.get(i).x,(int)points.get(i).y,(int)points.get(++i).x,(int)points.get(i).y);
+                g2.draw(r);
+            }
+        }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+
     }
 
     public void SaveFile(){
@@ -337,11 +393,27 @@ public class VecFile extends JPanel implements MouseListener {
 
     }
 
+    public Point2D.Double GetRelativePoint(Point2D.Double p){
+        Double width = (double)getWidth();
+        Double height = (double)getHeight();
+        return new Point2D.Double(p.getX()/height, p.getY()/width);
+    }
+
+    public Point2D.Double GetActualPoint(Point2D.Double p){
+        Double width = (double)getWidth();
+        Double height = (double)getHeight();
+        return new Point2D.Double(p.getX()*height, p.getY()*width);
+    }
+
     private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
         return new Line2D.Float(x1, y1, x2, y2);
     }
 
     private Rectangle2D.Float makeRectangle(int x1, int y1, int x2, int y2) {
         return new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    }
+
+    private Ellipse2D.Float makeEllipse(int x1, int y1, int x2, int y2){
+        return new Ellipse2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
     }
 }

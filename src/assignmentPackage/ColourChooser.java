@@ -10,7 +10,7 @@ import java.awt.*;
 public class ColourChooser extends JFrame implements ChangeListener {
     JFrame ColourChooser = new JFrame();
     private JButton colour, button;
-    private JPanel canvas;
+    
     @Override
     public void stateChanged(ChangeEvent e) {
         colour.setBackground(colourwheel.getColor());
@@ -25,7 +25,6 @@ public class ColourChooser extends JFrame implements ChangeListener {
         super(colour.getName());
         this.colour = colour;
         this.button = button;
-        this.canvas = canvas;
         this.setSize(500,500);
         colourwheel = new JColorChooser(colour.getBackground());
         colourwheel.getSelectionModel().addChangeListener(this);
