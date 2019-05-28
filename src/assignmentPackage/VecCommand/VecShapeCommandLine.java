@@ -17,6 +17,9 @@ public class VecShapeCommandLine extends VecShapeCommand implements IVecCommandE
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         g.setPaint(f.GetPenColor());
-        g.draw(new Line2D.Double(points.get(0).getX(),points.get(0).getY(), points.get(1).getX(), points.get(1).getY()));
+        Point2D.Double p1 = f.GetActualPoint(points.get(0));
+        Point2D.Double p2 = f.GetActualPoint(points.get(1));
+
+        g.draw(new Line2D.Double(p1.getX(),p1.getY(), p2.getX(), p2.getY()));
     }
 }
