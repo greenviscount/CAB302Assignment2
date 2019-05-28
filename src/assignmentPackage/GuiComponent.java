@@ -170,7 +170,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     }
 
     private void createTabHead(String title) {
-        int index = canvasArea.indexOfTab(title);
+        int index = canvasArea.getTabCount()-1;
         JPanel pnlTab = new JPanel(new GridBagLayout());
         pnlTab.setOpaque(false);
         JLabel lblTitle = new JLabel(title);

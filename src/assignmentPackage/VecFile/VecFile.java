@@ -406,7 +406,7 @@ public class VecFile extends JPanel implements MouseListener {
     public Point2D.Double GetRelativePoint(Point2D.Double p){
         Double width = (double)getWidth();
         Double height = (double)getHeight();
-        return new Point2D.Double(p.getX()/height, p.getY()/width);
+        return new Point2D.Double(p.getX()/width, p.getY()/height);
     }
 
     public Point2D.Double GetActualPoint(Point2D.Double p){
@@ -415,7 +415,7 @@ public class VecFile extends JPanel implements MouseListener {
 
         //width and height swapped (must be swapped back)
         //fix by "refactoring" width and height of commands
-        return new Point2D.Double(p.getX()*height, p.getY()*width);
+        return new Point2D.Double(p.getX()*width, p.getY()*height);
     }
 
     private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
