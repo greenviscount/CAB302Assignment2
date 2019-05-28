@@ -313,6 +313,12 @@ public class VecFile extends JPanel implements MouseListener {
         drawMode = num;
     }
 
+    public void changeSize(double diff) {
+        double width = getWidth()*diff;
+        double height = getHeight()*diff;
+        setPreferredSize(new Dimension((int)width,(int)height));
+    }
+
     private void paintBackground(Graphics2D g2){
         g2.setPaint(Color.LIGHT_GRAY);
         for (int i = 0; i < getSize().width; i += 10) {
@@ -330,7 +336,7 @@ public class VecFile extends JPanel implements MouseListener {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        paintBackground(g2);
+        //paintBackground(g2);
 
         g2.setStroke(new BasicStroke(2));
 
@@ -371,6 +377,7 @@ public class VecFile extends JPanel implements MouseListener {
     }
 
     public void SaveFile(){
+        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, null));
         if(!this.file.exists()){
             try{
                 this.file.createNewFile();
@@ -402,6 +409,9 @@ public class VecFile extends JPanel implements MouseListener {
     public Point2D.Double GetActualPoint(Point2D.Double p){
         Double width = (double)getWidth();
         Double height = (double)getHeight();
+
+        //width and height swapped (must be swapped back)
+        //fix by "refactoring" width and height of commands
         return new Point2D.Double(p.getX()*height, p.getY()*width);
     }
 
