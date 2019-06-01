@@ -384,7 +384,7 @@ public class VecFile extends JPanel implements MouseListener {
     }
 
     public void SaveFile(){
-        
+
         if(!this.file.exists()){
             try{
                 this.file.createNewFile();
@@ -392,15 +392,30 @@ public class VecFile extends JPanel implements MouseListener {
                 e.printStackTrace();
             }
         }
-
-        try{
+        FileDialog dialog = new FileDialog((Frame)null, "Select New File Location");
+        dialog.setFile("*.vec");
+        dialog.setMode(FileDialog.SAVE);
+        dialog.setVisible(true);
+        String file = dialog.getFile();
+        if(file==null){
+            return;
+        }
+        try {
+            // pass the path to the file as a parameter
+            File f = new File(System.getProperty("user.dir")+"\\"+file);
             StringBuilder sb = new StringBuilder();
-            FileWriter fw = new FileWriter(this.file.getAbsolutePath(), false);
+            FileWriter fw = new FileWriter(f.getAbsolutePath(), false);
             for (VecCommand command: VecCommandStack) {
                 sb.append(((IVecCommandPrintable)command).PrintToFile());
             }
             fw.write(sb.toString());
             fw.close();
+        }
+        catch(Exception e2){
+            e2.printStackTrace();
+        }
+        try{
+
         }catch(Exception e){
             e.printStackTrace();
         }
