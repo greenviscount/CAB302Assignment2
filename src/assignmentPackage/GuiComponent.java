@@ -124,6 +124,9 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             dialog.setMode(FileDialog.SAVE);
             dialog.setVisible(true);
             String file = dialog.getFile();
+            if(file==null){
+                return;
+            }
             try {
                 // pass the path to the file as a parameter
                 File f = new File(System.getProperty("user.dir")+"\\"+file);
