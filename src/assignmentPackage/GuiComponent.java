@@ -121,6 +121,7 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
         else if (src==newPage) {
             FileDialog dialog = new FileDialog((Frame)null, "Select New File Location");
+            dialog.setFile("*.vec");
             dialog.setMode(FileDialog.SAVE);
             dialog.setVisible(true);
             String file = dialog.getFile();
@@ -142,10 +143,14 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             //In response to a button click:
             fileRead = true;
             FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
+            dialog.setFile("*.vec");
             dialog.setMode(FileDialog.LOAD);
             dialog.setVisible(true);
             String file = dialog.getFile();
             System.out.println(file);
+            if(file==null){
+                return;
+            }
             try {
                 // pass the path to the file as a parameter
                 File f = new File(System.getProperty("user.dir")+"\\"+file);
