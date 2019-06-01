@@ -15,9 +15,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
+import java.util.Iterator;
 
 import static assignmentPackage.VecCommand.VecCommandType.*;
 
@@ -84,6 +87,15 @@ public class VecFile extends JPanel implements MouseListener {
 
     public void AddCommand(VecCommand c){
         VecCommandStack.push(c);
+    }
+
+    // Getter
+    public VecCommandType getStack() {
+        for (VecCommand element : VecCommandStack){
+            element.GetType();
+            return PEN;
+        }
+        return null;
     }
 
     public void RemoveLastCommand(){
