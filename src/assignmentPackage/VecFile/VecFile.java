@@ -153,6 +153,7 @@ public class VecFile extends JPanel implements MouseListener {
                     if(canSetFill){
                         VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL, this.filling.getBackground()));
                         canSetFill = false;
+                        usedShapeCommand = false;
                     }else{
                         ChangeLastColorCommandColor(this.penColor, FILL);
                     }
@@ -160,6 +161,7 @@ public class VecFile extends JPanel implements MouseListener {
                     if(usedShapeCommand){
                         VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL,"OFF"));
                     }else{
+                        canSetFill = true;
                         RemoveLastColorCommand(FILL);
                     }
                 }
@@ -213,6 +215,11 @@ public class VecFile extends JPanel implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (this.penColor != this.pen.getBackground()) {
+            penChanged = true;
+            SetColourCommand(PEN);
+        }
+
         if(!SwingUtilities.isRightMouseButton(e)){
             if(type == PLOT){
                 points = new ArrayList<Point2D.Double>();
@@ -223,10 +230,6 @@ public class VecFile extends JPanel implements MouseListener {
             }
         }
 
-        if (this.penColor != this.pen.getBackground()) {
-            penChanged = true;
-            SetColourCommand(PEN);
-        }
         switch(this.type){
             case RECTANGLE:
                 if(points.size()==2){
@@ -403,7 +406,7 @@ public class VecFile extends JPanel implements MouseListener {
     public Point2D.Double GetRelativePoint(Point2D.Double p){
         Double width = (double)getWidth();
         Double height = (double)getHeight();
-        return new Point2D.Double(p.getX()/height, p.getY()/width);
+        return new Point2D.Double(p.getX()/width, p.getY()/height);
     }
 
     public Point2D.Double GetActualPoint(Point2D.Double p){
@@ -412,7 +415,7 @@ public class VecFile extends JPanel implements MouseListener {
 
         //width and height swapped (must be swapped back)
         //fix by "refactoring" width and height of commands
-        return new Point2D.Double(p.getX()*height, p.getY()*width);
+        return new Point2D.Double(p.getX()*width, p.getY()*height);
     }
 
     private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {

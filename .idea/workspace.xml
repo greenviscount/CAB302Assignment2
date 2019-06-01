@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85938f8c-4261-40c9-ad7a-2ebe30a1ffdc" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/newFile.vec" beforeDir="false" afterPath="$PROJECT_DIR$/newFile.vec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/newest" beforeDir="false" afterPath="$PROJECT_DIR$/newest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/newer.vec" beforeDir="false" afterPath="$PROJECT_DIR$/newer.vec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" afterDir="false" />
+>>>>>>> 49026b46e1f2ce234b75c06182c8a1fc8d4d6cb6
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,10 +28,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1291">
               <caret line="148" column="32" selection-start-line="148" selection-start-column="32" selection-end-line="148" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+=======
+            <state relative-caret-position="51">
+              <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
+              <folding>
+                <element signature="e#6084#6085#0" expanded="true" />
+>>>>>>> 49026b46e1f2ce234b75c06182c8a1fc8d4d6cb6
               </folding>
             </state>
           </provider>
@@ -34,8 +47,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="34">
               <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+=======
+            <state relative-caret-position="17">
+              <caret line="168" column="31" lean-forward="true" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
+>>>>>>> 49026b46e1f2ce234b75c06182c8a1fc8d4d6cb6
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,6 +157,12 @@
       <find>RenderFi</find>
       <find>GetAc</find>
       <find>Sav</find>
+      <find>usedS</find>
+      <find>canSetFill</find>
+      <find>canS</find>
+      <find>SetFill</find>
+      <find>fill</find>
+      <find>canSetFi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,7 +226,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559032224932" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559058630336" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -329,9 +353,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java</url>
-          <line>318</line>
+          <line>150</line>
           <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -553,8 +577,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1291">
           <caret line="148" column="32" selection-start-line="148" selection-start-column="32" selection-end-line="148" selection-end-column="32" />
+=======
+        <state relative-caret-position="17">
+          <caret line="168" column="31" lean-forward="true" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
+>>>>>>> 49026b46e1f2ce234b75c06182c8a1fc8d4d6cb6
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -566,6 +595,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newFile.vec">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="608">
           <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
         </state>
@@ -591,6 +621,12 @@
           <caret line="377" lean-forward="true" selection-start-line="377" selection-end-line="377" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+        <state relative-caret-position="51">
+          <caret line="172" column="46" selection-start-line="172" selection-start-column="46" selection-end-line="172" selection-end-column="46" />
+          <folding>
+            <element signature="e#6084#6085#0" expanded="true" />
+>>>>>>> 49026b46e1f2ce234b75c06182c8a1fc8d4d6cb6
           </folding>
         </state>
       </provider>
