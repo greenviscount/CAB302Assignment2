@@ -151,14 +151,14 @@ public class VecFile extends JPanel implements MouseListener {
                 if(fill){
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetFill){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, this.filling.getBackground()));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL, this.filling.getBackground()));
                         canSetFill = false;
                     }else{
                         ChangeLastColorCommandColor(this.penColor, FILL);
                     }
                 }else{
                     if(usedShapeCommand){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, null));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL,"OFF"));
                     }else{
                         RemoveLastColorCommand(FILL);
                     }
@@ -168,7 +168,7 @@ public class VecFile extends JPanel implements MouseListener {
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetPen){
                         SetPenColor(this.pen.getBackground());
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, this.pen.getBackground()));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(PEN, this.pen.getBackground()));
                         canSetPen = false;
                     }else{
                         ChangeLastColorCommandColor(this.pen.getBackground(), PEN);
@@ -230,7 +230,7 @@ public class VecFile extends JPanel implements MouseListener {
         switch(this.type){
             case RECTANGLE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(RECTANGLE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(RECTANGLE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
@@ -242,7 +242,7 @@ public class VecFile extends JPanel implements MouseListener {
 
             case LINE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(LINE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(LINE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
@@ -253,7 +253,7 @@ public class VecFile extends JPanel implements MouseListener {
                 }
             case PLOT:
                 if(points.size()==1){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
@@ -266,7 +266,7 @@ public class VecFile extends JPanel implements MouseListener {
             case POLYGON:
                 if(SwingUtilities.isRightMouseButton(e)){
                     if(points.size()>2){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points));
                         points = new ArrayList<Point2D.Double>();
                         usedShapeCommand = true;
                         canSetFill = true;
@@ -283,7 +283,7 @@ public class VecFile extends JPanel implements MouseListener {
                 }
             case ELLIPSE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
@@ -377,7 +377,7 @@ public class VecFile extends JPanel implements MouseListener {
     }
 
     public void SaveFile(){
-        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, null));
+        VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL, "OFF"));
         if(!this.file.exists()){
             try{
                 this.file.createNewFile();
