@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandRectangle extends VecShapeCommand implements IVecCommandExecutable {
+public class VecShapeCommandRectangle extends VecShapeCommand {
 
     public VecShapeCommandRectangle(ArrayList<Point2D.Double> p) {
         this.points = p;

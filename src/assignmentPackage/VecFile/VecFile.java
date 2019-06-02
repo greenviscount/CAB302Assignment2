@@ -216,7 +216,7 @@ public class VecFile extends JPanel implements MouseListener {
 
     private void RenderFile(Graphics2D  g){
         for (VecCommand command : VecCommandStack) {
-            ((IVecCommandExecutable)command).Execute(g, this);
+            command.Execute(g, this);
         }
     }
 
@@ -418,7 +418,7 @@ public class VecFile extends JPanel implements MouseListener {
             StringBuilder sb = new StringBuilder();
             FileWriter fw = new FileWriter(f.getAbsolutePath(), false);
             for (VecCommand command: VecCommandStack) {
-                sb.append(((IVecCommandPrintable)command).PrintToFile());
+                sb.append(command.PrintToFile());
             }
             fw.write(sb.toString());
             fw.close();

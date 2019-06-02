@@ -7,7 +7,7 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandPolygon extends VecShapeCommand implements IVecCommandExecutable {
+public class VecShapeCommandPolygon extends VecShapeCommand {
     public VecShapeCommandPolygon(ArrayList<Point2D.Double> p) {
         this.points = p;
         this.type = VecCommandType.POLYGON;

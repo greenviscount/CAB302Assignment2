@@ -2,10 +2,10 @@ package assignmentPackage.VecCommand;
 
 import java.awt.*;
 
-public abstract class VecColorCommand extends VecCommand implements IVecCommandPrintable{
+public abstract class VecColorCommand extends VecCommand{
     protected Color color = Color.BLACK;
 
-    protected VecColorCommand() {
+    VecColorCommand() {
     }
 
     public String PrintToFile() {

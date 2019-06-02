@@ -3,13 +3,9 @@ package assignmentPackage.VecCommand;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public abstract class VecShapeCommand extends VecCommand implements IVecCommandPrintable {
+public abstract class VecShapeCommand extends VecCommand{
 
     protected ArrayList<Point2D.Double> points;
-
-    public String GetHistoryString(){
-        return this.GetType().toString();
-    }
 
     @Override
     public String PrintToFile(){
