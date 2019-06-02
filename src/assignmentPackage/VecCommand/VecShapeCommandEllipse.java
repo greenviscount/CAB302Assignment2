@@ -7,12 +7,24 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandEllipse extends VecShapeCommand implements IVecCommandExecutable  {
+/**
+ * VecCommand describing an Ellipse
+ */
+public class VecShapeCommandEllipse extends VecShapeCommand {
+    /**
+     * constructor
+     * @param p arrayList of vertices
+     */
     public VecShapeCommandEllipse(ArrayList<Point2D.Double> p) {
         this.points = p;
         this.type = VecCommandType.ELLIPSE;
     }
 
+    /**
+     * renders the shape
+     * @param g the graphics object that will render the object
+     * @param f the parent file containing the canvas
+     */
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         Point2D.Double p1 = f.GetActualPoint(points.get(0));

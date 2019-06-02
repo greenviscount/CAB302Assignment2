@@ -6,14 +6,25 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+/**
+ * VecCommand describing an Rectangle
+ */
+public class VecShapeCommandRectangle extends VecShapeCommand {
 
-public class VecShapeCommandRectangle extends VecShapeCommand implements IVecCommandExecutable {
-
+    /**
+     * constructor
+     * @param p arrayList of vertices
+     */
     public VecShapeCommandRectangle(ArrayList<Point2D.Double> p) {
         this.points = p;
         this.type = VecCommandType.RECTANGLE;
     }
 
+    /**
+     * renders the shape
+     * @param g the graphics object that will render the object
+     * @param f the parent file containing the canvas
+     */
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         Point2D.Double p1 = f.GetActualPoint(points.get(0));

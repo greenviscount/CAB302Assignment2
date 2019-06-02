@@ -2,12 +2,18 @@ package assignmentPackage.VecCommand;
 
 import java.awt.*;
 
-public abstract class VecColorCommand extends VecCommand implements IVecCommandPrintable{
+/**
+ * representation of a VecColorCommand
+ *
+ * defines methods for accessing the color value of the command
+ * and getting the string representation
+ */
+public abstract class VecColorCommand extends VecCommand{
     protected Color color = Color.BLACK;
 
-    protected VecColorCommand() {
-    }
-
+    /**
+     * @return the string representation of this command
+     */
     public String PrintToFile() {
         StringBuilder str = new StringBuilder();
         str.append(GetType().toString());
@@ -17,10 +23,17 @@ public abstract class VecColorCommand extends VecCommand implements IVecCommandP
         return str.toString();
     }
 
+    /**
+     * @return Color this commands color value
+     */
     public Color GetColor(){
         return this.color;
     }
 
+
+    /**
+     * @param c sets the color of this command
+     */
     public void SetColor(Color c){
         this.color = c;
     }
