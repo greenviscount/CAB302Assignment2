@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"assignmentPackage"},{"l":"assignmentPackage.VecCommand"},{"l":"assignmentPackage.VecFile"}]
