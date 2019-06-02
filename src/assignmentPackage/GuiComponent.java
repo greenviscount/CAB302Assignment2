@@ -43,6 +43,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
     private JButton Polygon;
     private JButton colour;
     private JButton fill;
+    private JButton undo;
+    private JButton redo;
     private JButton fillcolour;
     private JButton current;
 
@@ -119,9 +121,13 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
         else if (src==newPage) {
             FileDialog dialog = new FileDialog((Frame)null, "Select New File Location");
+            dialog.setFile("*.vec");
             dialog.setMode(FileDialog.SAVE);
             dialog.setVisible(true);
             String file = dialog.getFile();
+            if(file==null){
+                return;
+            }
             try {
                 // pass the path to the file as a parameter
                 File f = new File(System.getProperty("user.dir")+"\\"+file);
@@ -137,10 +143,14 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
             //In response to a button click:
             fileRead = true;
             FileDialog dialog = new FileDialog((Frame)null, "Select File to Read");
+            dialog.setFile("*.vec");
             dialog.setMode(FileDialog.LOAD);
             dialog.setVisible(true);
             String file = dialog.getFile();
             System.out.println(file);
+            if(file==null){
+                return;
+            }
             try {
                 // pass the path to the file as a parameter
                 File f = new File(System.getProperty("user.dir")+"\\"+file);
@@ -154,6 +164,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         else if (src==export) {
             int i = canvasArea.getSelectedIndex();
             canvases.get(i).SaveFile();
+        }else if(src==redo){
+            canvases.get(canvasArea.getSelectedIndex()).RedoLastCommand();
+        }else if(src==undo){
+            canvases.get(canvasArea.getSelectedIndex()).UndoLastCommand();
         }
 
     }
@@ -234,6 +248,8 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         Rectangle = createButton("images/rectangle_icon.png");
         Elipse = createButton("images/elipse_icon.png");
         Polygon = createButton("images/polygon_icon.png");
+        undo = createButton("images/undo.png");
+        redo = createButton("images/redo.png");
         current = Line;
 
         imp = createButton("images/import.png");
@@ -298,16 +314,18 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.NORTH;
 
-        addToPanel(left, Increase, constraints, 0,0,1,1);
-        addToPanel(left, Decrease, constraints, 0,1,1,1);
-        addToPanel(left, Point, constraints,0,2,1,1);
-        addToPanel(left, Line, constraints,0,3,1,1);
-        addToPanel(left, Rectangle, constraints,0,4,1,1);
-        addToPanel(left, Elipse, constraints, 0,5,1,1);
-        addToPanel(left, Polygon, constraints,0,6,1,1);
-        addToPanel(left,colour,constraints,0,7,1,1);
-        addToPanel(left,fill,constraints,0,8,1,1);
-        addToPanel(left,fillcolour,constraints,0,9,1,1);
+        addToPanel(left, Increase   , constraints, 0,0,1,1);
+        addToPanel(left, Decrease   , constraints, 1,0,1,1);
+        addToPanel(left, Point      , constraints,0,1,1,1);
+        addToPanel(left, Line       , constraints,1,1,1,1);
+        addToPanel(left, Rectangle  , constraints,0,2,1,1);
+        addToPanel(left, Elipse     , constraints, 1,2,1,1);
+        addToPanel(left, Polygon    , constraints,0,3,1,1);
+        addToPanel(left,colour      , constraints,1,5,1,1);
+        addToPanel(left,fill        , constraints,0,6,1,1);
+        addToPanel(left,fillcolour  , constraints,1,6,1,1);
+        addToPanel(left,undo        , constraints,0,8,1,1);
+        addToPanel(left,redo        , constraints,1,8,1,1);
 
         addToPanel(bottom,newPage,constraints,0,0,1,1);
         addToPanel(bottom,imp,constraints,1,0,1,1);

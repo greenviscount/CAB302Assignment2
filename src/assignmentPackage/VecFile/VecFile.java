@@ -31,6 +31,7 @@ public class VecFile extends JPanel implements MouseListener {
     private boolean penChanged = false;
     private File file;
     private Stack<VecCommand> VecCommandStack = new Stack<VecCommand>();
+    private Stack<VecCommand> VecCommandUndoStack = new Stack<VecCommand>();
     private String name;
     private Point2D.Double startDrag;
     private Point2D.Double endDrag;
@@ -163,31 +164,36 @@ public class VecFile extends JPanel implements MouseListener {
                 if(fill){
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetFill){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, this.filling.getBackground()));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL, this.filling.getBackground()));
                         canSetFill = false;
                         usedShapeCommand = false;
                     }else{
                         ChangeLastColorCommandColor(this.penColor, FILL);
                     }
+
                 }else{
                     if(usedShapeCommand){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, null));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(FILL,"OFF"));
                     }else{
                         canSetFill = true;
                         RemoveLastColorCommand(FILL);
                     }
                 }
+                VecCommandUndoStack.clear();
+                break;
             case PEN:
                 if(penChanged){
                     //if fill status is true and a VecShapeCommand has been used set a new command in the stack
                     if(canSetPen){
                         SetPenColor(this.pen.getBackground());
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(PEN, null, this.pen.getBackground()));
+                        VecCommandStack.push(VecCommandFactory.GetColorCommand(PEN, this.pen.getBackground()));
                         canSetPen = false;
                     }else{
                         ChangeLastColorCommandColor(this.pen.getBackground(), PEN);
                     }
                 }
+                VecCommandUndoStack.clear();
+                break;
             default:break;
         }
     }
@@ -245,68 +251,66 @@ public class VecFile extends JPanel implements MouseListener {
         switch(this.type){
             case RECTANGLE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(RECTANGLE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(RECTANGLE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
                     canSetPen = true;
-                    break;
-                }else{
-                    break;
+                    VecCommandUndoStack.clear();
                 }
+                break;
 
             case LINE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(LINE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(LINE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
                     canSetPen = true;
-                    break;
-                }else{
-                    break;
                 }
+                VecCommandUndoStack.clear();
+                break;
             case PLOT:
                 if(points.size()==1){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(PLOT, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
                     canSetPen = true;
-                    break;
                 }else{
                     points = new ArrayList<Point2D.Double>();
-                    break;
                 }
+                VecCommandUndoStack.clear();
+                break;
             case POLYGON:
                 if(SwingUtilities.isRightMouseButton(e)){
                     if(points.size()>2){
-                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points, null));
+                        VecCommandStack.push(VecCommandFactory.GetShapeCommand(POLYGON, points));
                         points = new ArrayList<Point2D.Double>();
                         usedShapeCommand = true;
                         canSetFill = true;
                         canSetPen = true;
                         polyfirst=true;
                         endDrag=null;
-                        break;
                     }else{
                         points = new ArrayList<Point2D.Double>();
-                        break;
                     }
+                    VecCommandUndoStack.clear();
+                    break;
                 }else{
                     break;
                 }
             case ELLIPSE:
                 if(points.size()==2){
-                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points, null));
+                    VecCommandStack.push(VecCommandFactory.GetShapeCommand(ELLIPSE, points));
                     points = new ArrayList<Point2D.Double>();
                     usedShapeCommand = true;
                     canSetFill = true;
                     canSetPen = true;
                     break;
-                }else{
-                    break;
                 }
+                VecCommandUndoStack.clear();
+                break;
             default:
         }
 
@@ -392,7 +396,7 @@ public class VecFile extends JPanel implements MouseListener {
     }
 
     public void SaveFile(){
-        VecCommandStack.push(VecCommandFactory.GetShapeCommand(FILL, null, null));
+
         if(!this.file.exists()){
             try{
                 this.file.createNewFile();
@@ -400,15 +404,30 @@ public class VecFile extends JPanel implements MouseListener {
                 e.printStackTrace();
             }
         }
-
-        try{
+        FileDialog dialog = new FileDialog((Frame)null, "Select New File Location");
+        dialog.setFile("*.vec");
+        dialog.setMode(FileDialog.SAVE);
+        dialog.setVisible(true);
+        String file = dialog.getFile();
+        if(file==null){
+            return;
+        }
+        try {
+            // pass the path to the file as a parameter
+            File f = new File(System.getProperty("user.dir")+"\\"+file);
             StringBuilder sb = new StringBuilder();
-            FileWriter fw = new FileWriter(this.file.getAbsolutePath(), false);
+            FileWriter fw = new FileWriter(f.getAbsolutePath(), false);
             for (VecCommand command: VecCommandStack) {
                 sb.append(((IVecCommandPrintable)command).PrintToFile());
             }
             fw.write(sb.toString());
             fw.close();
+        }
+        catch(Exception e2){
+            e2.printStackTrace();
+        }
+        try{
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -440,5 +459,18 @@ public class VecFile extends JPanel implements MouseListener {
 
     private Ellipse2D.Float makeEllipse(int x1, int y1, int x2, int y2){
         return new Ellipse2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
+    }
+
+    public void RedoLastCommand() {
+        if(VecCommandUndoStack.size()>0){
+            VecCommandStack.push(VecCommandUndoStack.pop());
+            repaint();
+        }
+
+    }
+
+    public void UndoLastCommand() {
+        VecCommandUndoStack.push(VecCommandStack.pop());
+        repaint();
     }
 }
