@@ -7,7 +7,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandPlot extends VecShapeCommand implements IVecCommandExecutable {
+public class VecShapeCommandPlot extends VecShapeCommand {
 
     public VecShapeCommandPlot(ArrayList<Point2D.Double> p){
         this.points = p;

@@ -4,7 +4,7 @@ import assignmentPackage.VecFile.VecFile;
 
 import java.awt.*;
 
-public class VecColorCommandFill extends VecColorCommand implements IVecCommandExecutable {
+public class VecColorCommandFill extends VecColorCommand {
 
     public VecColorCommandFill( Color c){
         this.type = VecCommandType.FILL;

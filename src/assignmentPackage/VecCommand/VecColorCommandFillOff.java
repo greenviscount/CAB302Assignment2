@@ -4,7 +4,7 @@ import assignmentPackage.VecFile.VecFile;
 
 import java.awt.*;
 
-public class VecColorCommandFillOff extends VecColorCommand implements IVecCommandExecutable, IVecCommandPrintable{
+public class VecColorCommandFillOff extends VecColorCommand{
     private String command = "OFF";
     public VecColorCommandFillOff(){
         this.type = VecCommandType.FILL;

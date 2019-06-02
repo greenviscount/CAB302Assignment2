@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class VecShapeCommandEllipse extends VecShapeCommand implements IVecCommandExecutable  {
+public class VecShapeCommandEllipse extends VecShapeCommand {
     public VecShapeCommandEllipse(ArrayList<Point2D.Double> p) {
         this.points = p;
         this.type = VecCommandType.ELLIPSE;
