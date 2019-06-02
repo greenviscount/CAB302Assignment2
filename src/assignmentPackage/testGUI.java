@@ -8,7 +8,6 @@ import java.io.*;
 
 public class testGUI extends JFrame implements Runnable{
 
-
     private CanvasComponent canvas;
 
     @Override
