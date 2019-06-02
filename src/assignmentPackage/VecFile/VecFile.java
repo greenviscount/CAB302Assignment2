@@ -4,6 +4,7 @@ import assignmentPackage.VecCommand.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 import java.util.Iterator;
+import java.awt.event.*;
 
 import static assignmentPackage.VecCommand.VecCommandType.*;
 
@@ -50,7 +52,7 @@ public class VecFile extends JPanel implements MouseListener {
     private int drawMode;
     private JButton pen;
     private JButton filling;
-    private ArrayList<Point2D.Double> points;
+    public ArrayList<Point2D.Double> points;
 
     /**
      * constructor
@@ -97,6 +99,18 @@ public class VecFile extends JPanel implements MouseListener {
      */
     public String GetName(){
         return this.name;
+    }
+
+    public void AddCommand(VecCommand c){
+        VecCommandStack.push(c);
+    }
+
+    public void RemoveLastCommand(){
+        VecCommandStack.pop();
+    }
+
+    public VecCommand GetLastCommand(){
+        return VecCommandStack.peek();
     }
 
     /**
@@ -554,4 +568,5 @@ public class VecFile extends JPanel implements MouseListener {
         VecCommandUndoStack.push(VecCommandStack.pop());
         repaint();
     }
+
 }
