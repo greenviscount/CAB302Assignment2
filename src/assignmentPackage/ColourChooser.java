@@ -6,11 +6,16 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-
+/**
+*
+ */
 public class ColourChooser extends JFrame implements ChangeListener {
     JFrame ColourChooser = new JFrame();
     private JButton colour, button;
-    
+    /**
+    * change colour when colour is changed
+     * @param e the colour change event
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         colour.setBackground(colourwheel.getColor());
@@ -21,6 +26,12 @@ public class ColourChooser extends JFrame implements ChangeListener {
     }
 
     private JColorChooser colourwheel;
+
+    /**
+     * constuct colourChooser frame
+     * @param colour
+     * @param button
+     */
     public ColourChooser(JButton colour, JButton button) {
         super(colour.getName());
         this.colour = colour;

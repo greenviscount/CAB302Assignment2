@@ -101,14 +101,23 @@ public class VecFile extends JPanel implements MouseListener {
         return this.name;
     }
 
+    /**
+     * add commands to the stack
+     * @param c the VecCommand
+     */
     public void AddCommand(VecCommand c){
         VecCommandStack.push(c);
     }
+
 
     public void RemoveLastCommand(){
         VecCommandStack.pop();
     }
 
+    /**
+     * get the last command in the stack
+     * @return VecCommand
+     */
     public VecCommand GetLastCommand(){
         return VecCommandStack.peek();
     }
