@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import static assignmentPackage.VecCommand.VecCommandType.*;
 
+/**
+ * Main Gui Frame
+ */
 public class GuiComponent extends JFrame implements ActionListener, ChangeListener, Runnable {
     //listen for actions
     //Create a file chooser
@@ -54,6 +57,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
     private ArrayList<String> fileArrayList;
 
+    /**
+     * check and execute button operation
+     * @param e button press event
+     */
     @Override
     public void actionPerformed(ActionEvent e){
             //throws Exception
@@ -177,12 +184,18 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
     }
 
-    //run gui
+    /**
+     * execute frame creation
+     */
     @Override
     public void run() {
         createGUI();
     }
 
+    /**
+     * create head of tab
+     * @param title title of the tab
+     */
     private void createTabHead(String title) {
         int index = canvasArea.getTabCount()-1;
         JPanel pnlTab = new JPanel(new GridBagLayout());
@@ -210,6 +223,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         });
     }
 
+    /**
+     * create new tab and canvas
+     * @param f file that is imported
+     */
     private void createCanvas(File f) {
         VecFile canvasPnl =  new VecFile(f, colour, fillcolour );
         JScrollPane canvas = new JScrollPane(canvasPnl,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -223,14 +240,20 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         current.doClick();
     }
 
+    /**
+     * set which button is active
+     * @param button selected button
+     */
     private void setButton(JButton button) {
         current.setBackground(Color.LIGHT_GRAY);
         current = button;
         current.setBackground(Color.WHITE);
     }
     private static boolean fileRead;
-  
-    //create and add panels to frame
+
+    /**
+     * create frame and add panels and buttons
+     */
     private void createGUI() {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -280,14 +303,22 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         setVisible(true);
     }
 
-    //create new panel with colour c
+    /**
+     * generate a new panel
+     * @param c background colour of panel
+     * @return new JPanel with colour c
+     */
     private JPanel createPanel(Color c) {
         JPanel temp = new JPanel();
         temp.setBackground(c);
         return temp;
     }
 
-    //create new button with text str
+    /**
+     * create new button
+     * @param src file location of button icon
+     * @return new JButton with icon src
+     */
     private JButton createButton(String src) {
         JButton button = new JButton();
         try {
@@ -303,7 +334,9 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
 
     }
 
-    //define layout of buttons in bottom panel
+    /**
+     * create layout of panels and add buttons
+     */
     private void layoutButtonPanel() {
         GridBagLayout layout = new GridBagLayout();
         left.setLayout(layout);
@@ -332,7 +365,16 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         addToPanel(bottom,export,constraints,2,0,1,1);
     }
 
-    //add component c to panel jp in position x, y with size w by h
+    /**
+     * add a component to a panel
+     * @param jp panel being added to
+     * @param c component being added
+     * @param constraints constraints of GridBagLayout
+     * @param x x-coord of where component is added
+     * @param y y-coord of where component is added
+     * @param w width of component being added
+     * @param h height of component being added
+     */
     private void addToPanel(JPanel jp,Component c, GridBagConstraints
             constraints,int x, int y, int w, int h) {
         constraints.gridx = x;
@@ -342,7 +384,10 @@ public class GuiComponent extends JFrame implements ActionListener, ChangeListen
         jp.add(c, constraints);
     }
 
-    //main class
+    /**
+     * run code
+     * @param args
+     */
     public static void main(String[] args){
 
         SwingUtilities.invokeLater(new GuiComponent());

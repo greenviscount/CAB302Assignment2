@@ -54,7 +54,7 @@ public class testComponent{
     }
 
     /*
-     * Test 1: Constructing a basic CanvasComponent object.
+     * Test 1: Constructing a basic VecFile object.
      */
     @Test
     public void testConstruction() {
@@ -68,8 +68,8 @@ public class testComponent{
     @Test
     public void testAdding(){
         fakeCoord.add(new Point2D.Double(0.10,0.20));
-        VecCommandStack.push(VecCommandFactory.GetShapeCommand(VecCommandType.RECTANGLE, fakeCoord));
-        assertEquals(VecCommandType.RECTANGLE, VecCommandStack.peek().GetType());
+        VecFile.AddCommand(VecCommandFactory.GetShapeCommand(VecCommandType.RECTANGLE, fakeCoord));
+        assertEquals(VecCommandType.RECTANGLE, VecFile.GetLastCommand().GetType());
     }
 
     /*
@@ -141,9 +141,9 @@ public class testComponent{
     @Test
     public void testPenExport(){
         fakeCoord.add(new Point2D.Double(0.10,0.20));
-        VecCommandStack.push(VecCommandFactory.GetShapeCommand(VecCommandType.PEN, fakeCoord));
+        VecCommandStack.push(VecCommandFactory.GetColorCommand(VecCommandType.PEN, Color.BLUE));
         String print = VecCommandStack.peek().PrintToFile();
-        assertEquals("PEN 0.1 0.2 \n", print);
+        assertEquals("PEN #0000ff\n", print);
     }
 
     /*
