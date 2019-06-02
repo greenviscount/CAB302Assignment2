@@ -6,11 +6,18 @@ import java.awt.*;
 
 public class VecColorCommandFillOff extends VecColorCommand{
     private String command = "OFF";
+
+    /**
+     * constructor
+     */
     public VecColorCommandFillOff(){
         this.type = VecCommandType.FILL;
 
     }
 
+    /**
+     * @return the string representation of the command
+     */
     @Override
     public String PrintToFile() {
         StringBuilder str = new StringBuilder();
@@ -21,6 +28,10 @@ public class VecColorCommandFillOff extends VecColorCommand{
         return str.toString();
     }
 
+    /**
+     * @param g the graphics object that will render the object
+     * @param f the parent file containing the canvas
+     */
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         //f.SetFillColor(Color.WHITE);

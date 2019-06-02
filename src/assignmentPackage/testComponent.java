@@ -51,7 +51,6 @@ public class testComponent{
         testFile = new File(System.getProperty("user.dir")+"\\"+"assignmentPackage/VecFile/testFile.vec");
         testImportFile = new File(System.getProperty("user.dir")+"\\"+"assignmentPackage/example2.vec");
         VecFile = new assignmentPackage.VecFile.VecFile(testImportFile, colour, fill);
-        VecCommandStack = VecFile.getVecStack();
     }
 
     /*

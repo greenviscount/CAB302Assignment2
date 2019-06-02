@@ -4,8 +4,17 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+/**
+ * Factory for creating VecCommands
+ */
 public abstract class VecCommandFactory {
 
+    /**
+     * used to parse the lines of a .vec file into Vec commands
+     *
+     * @param s the string representation of a VecCommand
+     * @return VecCommand object
+     */
     public static VecCommand ParseCommandString(String s){
         String[] tokens = s.split("\\s");
         ArrayList<Point2D.Double> points = new ArrayList<Point2D.Double>();
@@ -47,16 +56,45 @@ public abstract class VecCommandFactory {
         }
     }
 
+    /**
+     * method used to make a color command (OFF)
+     * @param t VecCommandType the type of object to build
+     * @param s an ignored param
+     * @return VecCommand Object
+     */
     public static VecCommand GetColorCommand(VecCommandType t, String s) {
         return GetShapeCommand(t,null,null);
     }
+
+
+    /**
+     * method to make a color command (FILL, PEN)
+     * @param t VecCommandType the type of object to build
+     * @param c the color of the color command
+     * @return VecCommand Object
+     */
     public static VecCommand GetColorCommand(VecCommandType t, Color c) {
         return GetShapeCommand(t,null,c);
     }
+
+
+    /**
+     * @param t VecCommandType the type of object to build
+     * @param p an arrayList of points(verticies) representing a shape
+     * @return VecCommand Object
+     */
     public static VecCommand GetShapeCommand(VecCommandType t, ArrayList<Point2D.Double> p){
         return GetShapeCommand(t,p,null);
     }
 
+
+    /**
+     * General method for creating VecCommand Objects
+     * @param t VecCommandType the type of object to build
+     * @param p an arrayList of points(verticies) representing a shape
+     * @param c the color of the color command
+     * @return VecCommand Object
+     */
     private static VecCommand GetShapeCommand(VecCommandType t, ArrayList<Point2D.Double> p, Color c){
         switch(t) {
             case FILL:

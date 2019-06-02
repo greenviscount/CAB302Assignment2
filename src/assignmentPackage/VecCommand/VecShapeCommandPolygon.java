@@ -6,14 +6,25 @@ import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-
+/**
+ * VecCommand describing an Polygon
+ */
 public class VecShapeCommandPolygon extends VecShapeCommand {
+    /**
+     * constructor
+     * @param p arrayList of vertices
+     */
     public VecShapeCommandPolygon(ArrayList<Point2D.Double> p) {
         this.points = p;
         this.type = VecCommandType.POLYGON;
     }
 
 
+    /**
+     * renders the shape
+     * @param g the graphics object that will render the object
+     * @param f the parent file containing the canvas
+     */
     @Override
     public void Execute(Graphics2D  g, VecFile f) {
         Path2D.Double r = new Path2D.Double();

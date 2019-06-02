@@ -26,6 +26,9 @@ import java.awt.event.*;
 
 import static assignmentPackage.VecCommand.VecCommandType.*;
 
+/**
+ * Vec file representing a file containing commands and rendering methids for displaying the file
+ */
 public class VecFile extends JPanel implements MouseListener {
     private Color penColor = Color.BLACK;
     private Color fillColor = Color.WHITE;
@@ -51,6 +54,12 @@ public class VecFile extends JPanel implements MouseListener {
     private JButton filling;
     public ArrayList<Point2D.Double> points;
 
+    /**
+     * constructor
+     * @param f the vec file this represents
+     * @param pen the pen color button
+     * @param fill the fill color button
+     */
     public VecFile(File f, JButton pen, JButton fill){
         super();
         this.file = f;
@@ -84,24 +93,16 @@ public class VecFile extends JPanel implements MouseListener {
         });
     }
 
+    /**
+     * get the name of the vec file
+     * @return file name
+     */
     public String GetName(){
         return this.name;
     }
 
-    public Stack<VecCommand> getVecStack(){
-        return VecCommandStack;
-    }
     public void AddCommand(VecCommand c){
         VecCommandStack.push(c);
-    }
-
-    // Getter
-    public VecCommandType getStackLast() {
-        for (VecCommand element : VecCommandStack){
-            element.GetType();
-            return PEN;
-        }
-        return null;
     }
 
     public void RemoveLastCommand(){
@@ -112,24 +113,48 @@ public class VecFile extends JPanel implements MouseListener {
         return VecCommandStack.peek();
     }
 
+    /**
+     * sets the pen color
+     * @param c the pen color
+     */
     public void SetPenColor(Color c){
         this.penColor = c;
     }
 
+    /**
+     * @return the current pen color
+     */
     public Color GetPenColor(){
         return this.penColor;
     }
 
+    /**
+     * @param c the new fill color
+     */
     public void SetFillColor(Color c){ this.fillColor = c;}
 
+    /**
+     * @return the current fill color
+     */
     public Color GetFillColor(){return  this.fillColor;}
 
+    /**
+     * @return the current fill status
+     */
     public boolean GetFill(){
         return this.fill;
     }
 
+    /**
+     * sets the files fill status
+     * @param t
+     */
     public void SetFill(boolean t){this.fill = t;}
 
+    /**
+     * sets the command type
+     * @param t
+     */
     public void SetType(VecCommandType t){
         if (t==PEN || t==FILL) {
             this.colorType = t;
@@ -139,14 +164,10 @@ public class VecFile extends JPanel implements MouseListener {
         }
     }
 
-    public void SetUseShapeCommand(boolean b){
-        this.usedShapeCommand = b;
-    }
-
-    public boolean LastCommandSameType(VecCommandType t){
-        return(t==VecCommandStack.peek().GetType());
-    }
-
+    /**
+     * removes the last color command safely
+     * @param t the type of the last colour command to remove
+     */
     public void RemoveLastColorCommand(VecCommandType t){
         Stack<VecCommand> tempStack = new Stack<VecCommand>();
         boolean removed = false;
@@ -163,6 +184,10 @@ public class VecFile extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * use to generate pen and fill commands
+     * @param t color command type
+     */
     public void SetColourCommand(VecCommandType t) {
         switch (t) {
             case FILL:
@@ -203,6 +228,11 @@ public class VecFile extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * changes the last color command set into the stack
+     * @param c new colour
+     * @param t the type to be changed
+     */
     public void ChangeLastColorCommandColor(Color c , VecCommandType t){
         Stack<VecCommand> tempStack = new Stack<VecCommand>();
         boolean changed = false;
@@ -219,16 +249,30 @@ public class VecFile extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * executes the collection of vec commands
+     * @param g the graphics object to be rendered to
+     */
     private void RenderFile(Graphics2D  g){
         for (VecCommand command : VecCommandStack) {
             command.Execute(g, this);
         }
     }
 
+    /**
+     * override of mouse click - not used
+     * @param e event
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
 
     }
+
+    /**
+     * override of mouse pressed use to track mouse position
+     * for drag event
+     * @param e event
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         startDrag = new Point2D.Double(e.getX(), e.getY());
@@ -236,6 +280,10 @@ public class VecFile extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * listener override for mouse release event
+     * @param e event
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (this.penColor != this.pen.getBackground()) {
@@ -325,37 +373,37 @@ public class VecFile extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * listener override - not used
+     * @param e
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    /**
+     * listener override - not used
+     * @param e
+     */
     @Override
     public void mouseExited(MouseEvent e) {
 
     }
-    public void changeMode(int num) {
-        drawMode = num;
-    }
 
+    /**
+     * modifies the height and width of the canvas - zoom
+     * @param diff
+     */
     public void changeSize(double diff) {
         double width = getWidth()*diff;
         double height = getHeight()*diff;
         setPreferredSize(new Dimension((int)width,(int)height));
     }
 
-    private void paintBackground(Graphics2D g2){
-        g2.setPaint(Color.LIGHT_GRAY);
-        for (int i = 0; i < getSize().width; i += 10) {
-            Shape line = new Line2D.Float(i, 0, i, getSize().height);
-            g2.draw(line);
-        }
-
-        for (int i = 0; i < getSize().height; i += 10) {
-            Shape line = new Line2D.Float(0, i, getSize().width, i);
-            g2.draw(line);
-        }
-
-    }
+    /**
+     * redraws the canvas
+     * @param g graphics object for rendering
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -366,7 +414,7 @@ public class VecFile extends JPanel implements MouseListener {
 
         SetPenColor(Color.BLACK);
         SetFill(false);
-            RenderFile(g2);
+        RenderFile(g2);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.50f));
 
         if (startDrag != null && endDrag != null) {
@@ -400,6 +448,9 @@ public class VecFile extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * writes out the commands to a vec file
+     */
     public void SaveFile(){
 
         if(!this.file.exists()){
@@ -439,12 +490,22 @@ public class VecFile extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * changes a point to relative position on the canvas
+     * @param p vertex
+     * @return modified vertex
+     */
     public Point2D.Double GetRelativePoint(Point2D.Double p){
         Double width = (double)getWidth();
         Double height = (double)getHeight();
         return new Point2D.Double(p.getX()/width, p.getY()/height);
     }
 
+    /**
+     * changes a point to be the numerical position on the canvas
+     * @param p vertex
+     * @return modified vertex
+     */
     public Point2D.Double GetActualPoint(Point2D.Double p){
         Double width = (double)getWidth();
         Double height = (double)getHeight();
@@ -454,18 +515,44 @@ public class VecFile extends JPanel implements MouseListener {
         return new Point2D.Double(p.getX()*width, p.getY()*height);
     }
 
+    /**
+     * draws a line based on parameter co-ordinates
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return Line2D object representing a line
+     */
     private Line2D.Float makeLine(int x1, int y1, int x2, int y2) {
         return new Line2D.Float(x1, y1, x2, y2);
     }
 
+    /**
+     * draws a rectangle based on parameter co-ordinates
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return Rectangle2D object representing a rectangle
+     */
     private Rectangle2D.Float makeRectangle(int x1, int y1, int x2, int y2) {
         return new Rectangle2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
     }
-
+    /**
+     * draws a ellipse based on parameter co-ordinates
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return Ellipse2D object representing a ellipse
+     */
     private Ellipse2D.Float makeEllipse(int x1, int y1, int x2, int y2){
         return new Ellipse2D.Float(Math.min(x1, x2), Math.min(y1, y2), Math.abs(x1 - x2), Math.abs(y1 - y2));
     }
 
+    /**
+     * removes the last item from the command stack
+     */
     public void RedoLastCommand() {
         if(VecCommandUndoStack.size()>0){
             VecCommandStack.push(VecCommandUndoStack.pop());
@@ -474,6 +561,9 @@ public class VecFile extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * replaces the last command removed from hte command stack
+     */
     public void UndoLastCommand() {
         VecCommandUndoStack.push(VecCommandStack.pop());
         repaint();

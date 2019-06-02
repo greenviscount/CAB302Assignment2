@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="85938f8c-4261-40c9-ad7a-2ebe30a1ffdc" name="Default Changelist" comment="">
+    <list default="true" id="7df1ddf4-a366-4427-b241-80654aa72d73" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/CanvasComponent$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/CanvasComponent$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/CanvasComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/CanvasComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecCommand/VecColorCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecCommand/VecColorCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecCommand/VecShapeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecCommand/VecShapeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/VecFile/VecFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/testComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/testComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/testGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Assignment2/assignmentPackage/testGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandPen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandPen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandEllipse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandEllipse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPolygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPolygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/VecFile/fake.vec" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/VecFile/fake.vec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/testComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/testComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/testGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignmentPackage/testGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/testGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assignmentPackage/tests.java" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="assignment02-2" />
@@ -34,29 +33,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2180#2181#0" expanded="true" />
-                <element signature="e#2231#2232#0" expanded="true" />
-                <element signature="e#2305#2306#0" expanded="true" />
-                <element signature="e#2353#2354#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="229">
+              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -64,40 +44,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
+            <state relative-caret-position="192">
+              <caret line="115" column="7" lean-forward="true" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3011#3012#0" expanded="true" />
-                <element signature="e#3049#3050#0" expanded="true" />
+                <element signature="e#1148#1160#0" expanded="true" />
+                <element signature="e#1225#1237#0" expanded="true" />
+                <element signature="e#3277#3278#0" expanded="true" />
+                <element signature="e#3309#3310#0" expanded="true" />
+                <element signature="e#3447#3448#0" expanded="true" />
+                <element signature="e#3486#3487#0" expanded="true" />
+                <element signature="e#3726#3727#0" expanded="true" />
+                <element signature="e#3763#3764#0" expanded="true" />
+                <element signature="e#3804#3805#0" expanded="true" />
+                <element signature="e#3849#3850#0" expanded="true" />
+                <element signature="e#3983#3984#0" expanded="true" />
+                <element signature="e#4016#4017#0" expanded="true" />
+                <element signature="e#4102#4103#0" expanded="true" />
+                <element signature="e#4138#4139#0" expanded="true" />
+                <element signature="e#4448#4449#0" expanded="true" />
+                <element signature="e#4480#4481#0" expanded="true" />
+                <element signature="e#5067#5079#0" expanded="true" />
+                <element signature="e#7560#7572#0" expanded="true" />
+                <element signature="e#16777#16778#0" expanded="true" />
+                <element signature="e#16832#16833#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/testGUI.java">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="26" selection-start-column="26" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-              <folding>
-                <element signature="e#534#535#0" expanded="true" />
-                <element signature="e#567#568#0" expanded="true" />
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#633#634#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="138">
+              <caret line="128" column="20" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -105,20 +84,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/testComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+            <state relative-caret-position="102">
+              <caret line="52" column="86" selection-start-line="52" selection-start-column="86" selection-end-line="52" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4331#4343#0" expanded="true" />
+                <element signature="e#4938#4939#0" expanded="true" />
+                <element signature="e#5025#5026#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -126,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="153">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,19 +109,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandType.java">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPolygon.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="595">
+              <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandPen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -172,6 +159,7 @@
       <find>peek</find>
       <find>.push</find>
       <find>addcomm</find>
+      <find>veccommandStack.peek</find>
     </findStrings>
     <replaceStrings>
       <replace>VecCommandStack</replace>
@@ -183,30 +171,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandPen.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommand.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandEllipse.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandLine.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPlot.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPolygon.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommand.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/testGUI.java" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/VecFile/fake.vec" />
-        <option value="$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java" />
         <option value="$PROJECT_DIR$/src/assignmentPackage/testComponent.java" />
       </list>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="width" value="554" />
-    <option name="height" value="420" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -219,30 +187,35 @@
         <subPane>
           <expand>
             <path>
-              <item name="CAB302Assignment2 - VEC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAB302Assignment2 - VEC" type="462c0819:PsiDirectoryNode" />
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAB302Assignment2 - VEC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAB302Assignment2 - VEC" type="462c0819:PsiDirectoryNode" />
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAB302Assignment2 - VEC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAB302Assignment2 - VEC" type="462c0819:PsiDirectoryNode" />
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assignmentPackage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAB302Assignment2 - VEC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAB302Assignment2 - VEC" type="462c0819:PsiDirectoryNode" />
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assignmentPackage" type="462c0819:PsiDirectoryNode" />
               <item name="VecCommand" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CAB302Assignment2 - VEC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAB302Assignment2 - VEC" type="462c0819:PsiDirectoryNode" />
+              <item name="CAB302Assignment2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302Assignment2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assignmentPackage" type="462c0819:PsiDirectoryNode" />
               <item name="VecFile" type="462c0819:PsiDirectoryNode" />
@@ -255,7 +228,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559445909193" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559464170828" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -407,10 +380,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15245202" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14750378" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -419,7 +392,7 @@
       <window_info id="Favorites" order="6" side_tool="true" weight="0.32995737" />
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.20368364" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -428,7 +401,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.16793066" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.16693944" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -469,285 +442,71 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/javax/swing/JPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="115" column="11" selection-start-line="115" selection-start-column="11" selection-end-line="115" selection-end-column="11" />
+        <state relative-caret-position="192">
+          <caret line="115" column="7" lean-forward="true" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
           <folding>
-            <element signature="e#3132#3133#0" expanded="true" />
-            <element signature="e#3158#3159#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/jdk/internal/util/Preconditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="247" selection-start-line="247" selection-end-line="247" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Objects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="371" selection-start-line="371" selection-end-line="371" />
-          <folding>
-            <element signature="e#13945#13946#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="457" selection-start-line="457" selection-end-line="457" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="3341" selection-start-line="3341" selection-end-line="3341" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="2262" selection-start-line="2262" selection-end-line="2262" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="5007" selection-start-line="5007" selection-end-line="5007" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/CloseTab.java" />
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example2.vec">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example3.vec">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newFile.vec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/IVecCommandExecutable.java" />
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/IVecCommandPrintable.java" />
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandPen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPolygon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandPlot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandEllipse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1148#1160#0" expanded="true" />
+            <element signature="e#1225#1237#0" expanded="true" />
+            <element signature="e#3277#3278#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="e#3447#3448#0" expanded="true" />
+            <element signature="e#3486#3487#0" expanded="true" />
+            <element signature="e#3726#3727#0" expanded="true" />
+            <element signature="e#3763#3764#0" expanded="true" />
+            <element signature="e#3804#3805#0" expanded="true" />
+            <element signature="e#3849#3850#0" expanded="true" />
+            <element signature="e#3983#3984#0" expanded="true" />
+            <element signature="e#4016#4017#0" expanded="true" />
+            <element signature="e#4102#4103#0" expanded="true" />
+            <element signature="e#4138#4139#0" expanded="true" />
+            <element signature="e#4448#4449#0" expanded="true" />
+            <element signature="e#4480#4481#0" expanded="true" />
+            <element signature="e#5067#5079#0" expanded="true" />
+            <element signature="e#7560#7572#0" expanded="true" />
+            <element signature="e#16777#16778#0" expanded="true" />
+            <element signature="e#16832#16833#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/GuiComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
+        <state relative-caret-position="144">
+          <caret line="116" column="39" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="39" />
           <folding>
-            <element signature="e#5728#5729#0" expanded="true" />
-            <element signature="e#5755#5756#0" expanded="true" />
+            <element signature="e#5588#5589#0" expanded="true" />
+            <element signature="e#5615#5616#0" expanded="true" />
+            <element signature="e#6471#6472#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/ColourChooser.java">
+    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/tests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/fake.vec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="44" lean-forward="true" selection-start-column="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/Stack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="91" column="22" lean-forward="true" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="e#256#257#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandRectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommandLine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="22" />
+        <state relative-caret-position="17">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/CanvasComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2180#2181#0" expanded="true" />
-            <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
-            <element signature="e#2353#2354#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecFile/VecFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3011#3012#0" expanded="true" />
-            <element signature="e#3049#3050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/testGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" selection-start-column="26" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding>
-            <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#567#568#0" expanded="true" />
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#633#634#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFillOff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecShapeCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecCommandType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignmentPackage/VecCommand/VecColorCommandFill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="138">
+          <caret line="128" column="20" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignmentPackage/testComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+        <state relative-caret-position="102">
+          <caret line="52" column="86" selection-start-line="52" selection-start-column="86" selection-end-line="52" selection-end-column="86" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4331#4343#0" expanded="true" />
+            <element signature="e#4938#4939#0" expanded="true" />
+            <element signature="e#5025#5026#0" expanded="true" />
           </folding>
         </state>
       </provider>
